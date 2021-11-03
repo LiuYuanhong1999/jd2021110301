@@ -4,7 +4,7 @@
         <div class="collapse-btn" @click="collapseChage">
             <i v-if="!collapse" class="el-icon-s-fold"></i>
             <i v-else class="el-icon-s-unfold"></i>
-        </div>      
+        </div>
       {{tableDate}}1212
         <div class="logo">后台管理系统</div>
         <div class="header-right">

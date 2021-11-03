@@ -5,6 +5,7 @@
             <i v-if="!collapse" class="el-icon-s-fold"></i>
             <i v-else class="el-icon-s-unfold"></i>
         </div>
+      {{tableDate}}1212
         <div class="logo">后台管理系统</div>
         <div class="header-right">
             <div class="header-user-con">
@@ -74,7 +75,6 @@ export default {
                 router.push("/user");
             }
         };
-
         return {
             username,
             message,
@@ -83,6 +83,24 @@ export default {
             handleCommand,
         };
     },
+    data(){
+      return{
+        tableDate:[],
+      }
+    },
+
+  methods:{
+     initDate(){
+       this.axios.get("http://localhost:8088/find-all")
+           .then((v) => {
+             this.tableDate = v.data;
+           })
+     }
+  },
+  created() {
+      this.initDate()
+  }
+
 };
 </script>
 <style scoped>

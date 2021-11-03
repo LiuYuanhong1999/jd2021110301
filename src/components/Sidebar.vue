@@ -42,77 +42,122 @@ export default {
                 icon: "el-icon-lx-home",
                 index: "/dashboard",
                 title: "系统首页",
-            },
-            {
-                icon: "el-icon-lx-cascades",
-                index: "/table",
-                title: "基础表格",
-            },
-            {
-                icon: "el-icon-lx-copy",
-                index: "/tabs",
-                title: "tab选项卡",
-            },
-            {
-                icon: "el-icon-lx-calendar",
-                index: "3",
-                title: "表单相关",
-                subs: [
-                    {
-                        index: "/form",
-                        title: "基本表单",
-                    },
-                    {
-                        index: "/upload",
-                        title: "文件上传",
-                    },
-                    {
-                        index: "4",
-                        title: "三级菜单",
-                        subs: [
-                            {
-                                index: "/editor",
-                                title: "富文本编辑器",
-                            },
-                        ],
-                    },
-                ],
-            },
-            {
-                icon: "el-icon-lx-emoji",
-                index: "/icon",
-                title: "自定义图标",
-            },
-            {
-                icon: "el-icon-pie-chart",
-                index: "/charts",
-                title: "schart图表",
-            },
-            {
-                icon: "el-icon-lx-global",
-                index: "/i18n",
-                title: "国际化功能",
-            },
-            {
-                icon: "el-icon-lx-warn",
-                index: "7",
-                title: "错误处理",
-                subs: [
-                    {
-                        index: "/permission",
-                        title: "权限测试",
-                    },
-                    {
-                        index: "/404",
-                        title: "404页面",
-                    },
-                ],
-            },
-            {
-                icon: "el-icon-lx-redpacket_fill",
-                index: "/donate",
-                title: "支持作者",
-            },
+            },{
+            icon: "el-icon-lx-home",
+            index: "/dashboard",
+            title: "个人办公",
+            //二级菜单
+            subs:[
+              {
+                index:'/dashboard',
+                title:'流程审批'
+              },{
+                index:'/dashboard',
+                title:'流程设置'
+              },
+              {
+                index:'/dashboard',
+                title:'我的邮件'
+              },{
+                index:'/dashboard',
+                title:'我的日常'
+              },{
+                index:'/dashboard',
+                title:'我的计划'
+              }
+            ]
+          },
+          {
+            icon: "el-icon-lx-home",
+            index: "/dashboard",
+            title: "基本信息",
+              subs: [
+                {
+                  icon: "el-icon-lx-home",
+                  index: "/dashboard",
+                  title: "厂商名称",
+                },{
+                  icon: "el-icon-lx-home",
+                  index: "/dashboard",
+                  title: "汽车品牌",
+                }
+              ]
+          },
+
+          {
+            icon: "el-icon-lx-home",
+            index: "/dashboard",
+            title: "收车管理",
+            subs:[
+              {
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "收车登记",
+              },{
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "客户预约",
+              },{
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "车辆评估",
+              },{
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "客户回访",
+              },{
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "车辆入库",
+              }
+            ]},
+          {
+            icon: "el-icon-lx-home",
+            index: "/dashboard",
+            title: "销售管理",
+            subs: [
+              {
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "客户登记",
+              },{
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "客户跟踪",
+              },{
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "销售订单",
+              },{
+                icon: "el-icon-lx-home",
+                index: "/dashboard",
+                title: "车辆交割",
+              }
+            ]
+          },
+          {
+            icon: "el-icon-lx-home",
+            index: "/dashboard",
+            title: "车辆客村",
+          },{
+            icon: "el-icon-lx-home",
+            index: "/dashboard",
+            title: "财务管理",
+          },{
+            icon: "el-icon-lx-home",
+            index: "/dashboard",
+            title: "查询统计",
+          },{
+            icon: "el-icon-lx-home",
+            index: "/dashboard",
+            title: "用户管理",
+          },{
+            icon: "el-icon-lx-home",
+            index: "/dashboard",
+            title: "系统设置",
+          }
+
+
         ];
 
         const route = useRoute();

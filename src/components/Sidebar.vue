@@ -42,7 +42,13 @@ export default {
                 icon: "el-icon-lx-home",
                 index: "/dashboard",
                 title: "系统首页",
-            },{
+            },
+          {
+            icon: 'el-icon-lx-home',
+            index: '/main',
+            title: '模板'
+          },
+          {
             icon: "el-icon-lx-home",
             index: "/dashboard",
             title: "个人办公",

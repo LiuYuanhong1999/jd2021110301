@@ -18,6 +18,15 @@ const routes = [
                 },
                 component: () => import ( /* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
             },
+            {//模板
+                path:'/main',
+                name:'name',
+                meta:{
+                    title:'模板'
+                },
+                component:()=> import("../views/main.vue")
+
+            }
         ]
     }, {
         path: "/login",

@@ -35,6 +35,15 @@ const routes = [
                 name:'updateRecord',
                 component:()=>import("../views/updateRecord.vue")
             },
+            //基本信息  归档原因
+            {
+                path:'/archiveReason',
+                name:'archiveReason',
+                meta: {
+                    title: '归档原因'
+                },
+                component:()=>import("../views/tjq/ArchiveReason.vue")
+            }
 
         ]
     }, {

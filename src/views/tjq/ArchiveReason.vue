@@ -69,7 +69,9 @@
         </el-descriptions-item>
       </el-descriptions>
     </el-dialog>
+    <el-dialog v-model="dialogaddVisible" title="新增">
 
+    </el-dialog>
   </div>
 </template>
 
@@ -104,6 +106,7 @@ export default {
       grid:{//详情实体类
 
       },
+      dialogaddVisible:false,//新增弹出
     }
   },
   methods:{

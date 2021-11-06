@@ -80,13 +80,13 @@ export default {
           },
           {
             icon: "el-icon-lx-home",
-            index: "/dashboard",
+            index: "5",
             title: "基本信息",
               subs: [
                 {
                   icon: "el-icon-lx-home",
-                  index: "/dashboard",
-                  title: "厂商名称",
+                  index: "/archiveReason",
+                  title: "归档原因",
                 },{
                   icon: "el-icon-lx-home",
                   index: "/dashboard",

@@ -45,8 +45,13 @@ export default {
             },
           {
             icon: 'el-icon-lx-home',
-            index: '/main',
+            index: '/mainRecord',
             title: '模板'
+          },
+          {
+            icon: 'el-icon-lx-home',
+            index: '/updateRecord',
+            title: '修改模板'
           },
           {
             icon: "el-icon-lx-home",

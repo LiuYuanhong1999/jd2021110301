@@ -2,10 +2,11 @@ import {createRouter, createWebHashHistory} from "vue-router";
 import Home from "../views/Home.vue";
 
 const routes = [
+    // {
+    //     path: '/',
+    //     redirect: '/dashboard'
+    // }, {
     {
-        path: '/',
-        redirect: '/dashboard'
-    }, {
         path: "/",
         name: "Home",
         component: Home,
@@ -18,18 +19,26 @@ const routes = [
                 },
                 component: () => import ( /* webpackChunkName: "dashboard" */ "../views/Dashboard.vue")
             },
-            {//模板
-                path:'/main',
-                name:'name',
-                meta:{
-                    title:'模板'
-                },
-                component:()=> import("../views/main.vue")
+           {
+            path: '/tabs',
+                name: 'tabs',
+                component:()=>import('../views/Tabs.vue')
+            },
 
-            }
+            {//模板 显示所有
+                path:'/mainRecord',
+                name:'mainRecord',
+                component:()=> import("../views/mainRecord.vue")
+            },
+            {//模板新增/修改
+                path:'/updateRecord',
+                name:'updateRecord',
+                component:()=>import("../views/updateRecord.vue")
+            },
+
         ]
     }, {
-        path: "/login",
+        path: "/",
         name: "Login",
         meta: {
             title: '登录'

@@ -1,4 +1,4 @@
-<template>   
+<template>
     <div class="sidebar">
         <el-menu class="sidebar-el-menu" :default-active="onRoutes" :collapse="collapse" background-color="#324157"
             text-color="#bfcbd9" active-text-color="#20a0ff" unique-opened router>
@@ -97,12 +97,12 @@ export default {
 
           {
             icon: "el-icon-lx-home",
-            index: "/dashboard",
+            index: "6",
             title: "收车管理",
             subs:[
               {
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/Record",
                 title: "收车登记",
               },{
                 icon: "el-icon-lx-home",

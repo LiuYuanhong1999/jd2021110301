@@ -2,10 +2,21 @@ import {createRouter, createWebHashHistory} from "vue-router";
 import Home from "../views/Home.vue";
 
 const routes = [
-    // {
-    //     path: '/',
-    //     redirect: '/dashboard'
-    // }, {
+
+    {
+        path: "/",
+        name: "Login",
+        meta: {
+            title: '登录'
+        },
+        component: () => import ( /* webpackChunkName: "login" */ "../views/Login.vue")
+    },
+
+
+    {
+        path: '/s',
+        redirect: '/dashboard'
+    },
     {
         path: "/",
         name: "Home",
@@ -47,7 +58,7 @@ const routes = [
 
         ]
     }, {
-        path: "/login",
+        path: "/",
         name: "Login",
         meta: {
             title: '登录'

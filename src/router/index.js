@@ -64,6 +64,15 @@ const routes = [
                 },
                 component:()=>import('../views/lyh/Record.vue')
             },
+            //新增收车登记
+            {
+                path: '/AddRecord',
+                name: 'AddRecord',
+                meta: {
+                    title: '新增收车登记'
+                },
+                 component:()=>import('../views/lyh/AddRecord.vue')
+            }
 
         ]
     },

@@ -89,15 +89,10 @@ export default {
     },
 
   methods:{
-     initDate(){
-       this.axios.get("http://localhost:8088/find-all")
-           .then((v) => {
-             this.tableDate = v.data;
-           })
-     }
+
   },
   created() {
-      this.initDate()
+
   }
 
 };

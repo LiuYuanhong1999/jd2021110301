@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="top">
-      <el-button type="primary" size="mini">新增</el-button>
+      <el-button type="primary" size="mini" @click="add()">新增</el-button>
       <el-button type="primary" size="mini">删除</el-button>
       <el-button type="primary" size="mini">刷新</el-button>
     </div>
@@ -19,16 +19,15 @@
           </el-form-item>
           <el-form-item>
             <el-button type="primary" size="mini">确定</el-button>
-            <!--          <el-form-item size="mini">高级</el-form-item>-->
+
           </el-form-item>
           <el-form-item>
             <el-button type="primary" size="mini">高级</el-button>
-            <!--          <el-form-item size="mini">高级</el-form-item>-->
           </el-form-item>
         </el-form>
       </el-header>
       <el-main>
-        <el-table :data="tableData" style="width: 100%">
+        <el-table :data="tableDate.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
           <el-table-column type="selection" width="55"/>
           <el-table-column label="操作" width="200px">
             <template #default="scope">
@@ -38,12 +37,37 @@
             </template>
           </el-table-column>
 
-          <el-table-column prop="date" label="Date" width="180"/>
-          <el-table-column prop="name" label="Name" width="180"/>
-          <el-table-column prop="address" label="Address"/>
+          <el-table-column prop="recordId" label="编号" width="80"/>
+          <el-table-column prop="ggBrand.brandName" label="汽车品牌"/>
+          <el-table-column prop="ggDesign.designName" label="汽车款式"/>
+          <el-table-column prop="ggColor.colorName" label="车身颜色"/>
+          <el-table-column prop="recordLeaveTime" label="出厂时间"/>
+          <el-table-column prop="recordVariator" label="变速器"/>
+          <el-table-column prop="recordDisplacement" label="排量"/>
+          <el-table-column prop="recordMileage" label="行驶里程"/>
+          <el-table-column prop="recordBegain" label="初登时间"/>
+          <el-table-column prop="recordName" label="车主姓名"/>
+          <el-table-column prop="contactName" label="联系人姓名"/>
+          <el-table-column prop="contactPhone" label="联系人手机号码"/>
+          <el-table-column prop="contactPhone" label="联系人邮箱"/>
+          <el-table-column prop="recordPrice" label="预售价格"/>
+          <el-table-column prop="recordTime" label="咨询时间"/>
+          <el-table-column prop="recordWay" label="咨询方式"/>
+          <el-table-column prop="recordNote" label="备注"/>
         </el-table>
-        <el-pagination background layout="prev, pager, next" :total="1000">
-        </el-pagination>
+
+        <!--分页-->
+        <div class="fy_div">
+          <el-pagination
+              @size-change="handleSizeChange"
+              @current-change="handleCurrentChange"
+              :current-page="currentPage"
+              :page-sizes="[5, 10, 20, 40]"
+              :page-size="pagesize"
+              layout="total, sizes, prev, pager, next, jumper"
+              :total="tableDate.length">
+          </el-pagination>
+        </div>
       </el-main>
     </el-container>
     <el-dialog v-model="dialogVisible" title="详情">
@@ -78,40 +102,52 @@ export default {
   data() {
     return {
       //表格数据
-      tableData: [
-        {
-          date: '2016-05-03',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles',
-        },
-        {
-          date: '2016-05-02',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles',
-        },
-        {
-          date: '2016-05-04',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles',
-        },
-        {
-          date: '2016-05-01',
-          name: 'Tom',
-          address: 'No. 189, Grove St, Los Angeles',
-        },
-      ],
+      tableDate: [],
       dialogVisible:false,//详情弹出
       grid:{//详情实体类
-
       },
+
+      currentPage:1, //初始页
+      pagesize:10,    //    每页的数据
+
+
     }
   },
   methods:{
     //查询详情
     look(){
       this.dialogVisible=true;
-    }
+    },
+    initDate(){
+        this.axios.get("http://localhost:8088/find-clRecord")
+            .then((v) => {
+              this.tableDate = v.data;
+            })
+    },
+
+
+    //跳转新增
+    add(){
+      this.$router.push({
+        path: '/AddRecord'
+      })
+    },
+
+    // 初始页currentPage、初始每页数据数pagesize和数据data
+    handleSizeChange: function (size) {
+      this.pagesize = size;
+      console.log(this.pagesize)  //每页下拉显示数据
+    },
+    handleCurrentChange: function(currentPage){
+      this.currentPage = currentPage;
+      console.log(this.currentPage)  //点击第几页
+    },
+  },
+  created() {
+    this.initDate();
   }
+
+
 }
 </script>
 

@@ -118,7 +118,27 @@ const routes = [
                     title: '添加评估',
                 },
                 component:()=>import('../views/lyh/AddAssess.vue')
+            },
+
+
+            //客户回访
+            {
+                path: '/ReturnVist',
+                name: 'ReturnVist',
+                meta: {
+                    title: '客户回访'
+                },
+                component:()=>import('../views/lyh/ReturnVist.vue')
+            },
+            {
+                path: '/AddReturnVist',
+                name: 'AddReturnVist',
+                meta: {
+                    title: '增加回访记录'
+                },
+                component:()=>import('../views/lyh/AddReturnVist.vue')
             }
+
 
         ]
     },

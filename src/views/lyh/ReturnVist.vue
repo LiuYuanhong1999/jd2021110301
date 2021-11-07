@@ -44,7 +44,7 @@
             </template>
           </el-table-column>
           <el-table-column prop="assessId" label="编号" width="80"/>
-<!--      <el-table-column prop="ggBrand.brandName" label="编号" width="80"/>-->
+          <!--      <el-table-column prop="ggBrand.brandName" label="编号" width="80"/>-->
           <el-table-column prop="ggBrand.brandName" label="汽车品牌"/>
           <el-table-column prop="ggDesign.designName" label="汽车款式"/>
           <el-table-column prop="ggColor.colorName" label="车身颜色"/>

@@ -114,7 +114,7 @@ export default {
                 title: "车辆评估",
               },{
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/ReturnVist",
                 title: "客户回访",
               },{
                 icon: "el-icon-lx-home",

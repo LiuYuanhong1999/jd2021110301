@@ -53,7 +53,7 @@
 
 
       <el-form-item label="出厂时间" class="post">
-      <el-date-picker v-model="form.assessLeaveTime"></el-date-picker>
+        <el-date-picker v-model="form.assessLeaveTime"></el-date-picker>
       </el-form-item>
 
       <el-form-item label="变速器" class="post">
@@ -61,11 +61,11 @@
       </el-form-item>
 
       <el-form-item label="排量" class="post">
-      <el-input v-model="form.assessDisplacement"></el-input>
+        <el-input v-model="form.assessDisplacement"></el-input>
       </el-form-item>
 
       <el-form-item label="行驶里程" class="post">
-      <el-input v-model="form.assessMileage"></el-input>
+        <el-input v-model="form.assessMileage"></el-input>
       </el-form-item>
 
       <el-form-item label="初登时间" class="post">
@@ -73,27 +73,27 @@
       </el-form-item>
 
       <el-form-item label="车牌号" class="post">
-      <el-input v-model="form.assessCard"></el-input>
+        <el-input v-model="form.assessCard"></el-input>
       </el-form-item>
       <el-form-item label="燃油种类" class="post">
         <el-input v-model="form.assessType"></el-input>
       </el-form-item>
 
       <el-form-item label="是否四轮驱动" class="post">
-      <el-input v-model="form.assessDrive"></el-input>
+        <el-input v-model="form.assessDrive"></el-input>
       </el-form-item>
 
 
       <el-form-item label="发动机" class="post">
-      <el-input v-model="form.assessEngine"></el-input>
+        <el-input v-model="form.assessEngine"></el-input>
       </el-form-item>
 
       <el-form-item label="档位形式" class="post">
-    <el-input v-model="form.assessTap"></el-input>
+        <el-input v-model="form.assessTap"></el-input>
       </el-form-item>
 
       <el-form-item label="过户次数" class="post">
-      <el-input v-model="form.assessTransferTimes"></el-input>
+        <el-input v-model="form.assessTransferTimes"></el-input>
       </el-form-item>
 
       <el-form-item label="行驶证" class="post">
@@ -101,11 +101,11 @@
       </el-form-item>
 
       <el-form-item label="总体评价" class="post">
-    <el-input v-model="form.assessAppraise"></el-input>
+        <el-input v-model="form.assessAppraise"></el-input>
       </el-form-item>
 
       <el-form-item label="新车市场价" class="post">
-      <el-input v-model="form.assessNewcarPrice"></el-input>
+        <el-input v-model="form.assessNewcarPrice"></el-input>
       </el-form-item>
 
       <el-form-item label="评估人报价" class="post">
@@ -145,7 +145,7 @@
       </el-form-item>
 
       <el-form-item label="预约日期" class="post">
-       {{tableDate[0].ordersTime}}
+        {{tableDate[0].ordersTime}}
       </el-form-item>
 
 
@@ -164,7 +164,7 @@
 
 
 
-            <el-form-item class="post">
+      <el-form-item class="post">
         <el-button type="primary" @click="addClAssess(),clearFrom()">确定</el-button>
 
         <el-button @click="clearFrom(),goBack()">取消</el-button>
@@ -182,52 +182,52 @@ export default {
 
       //登记信息
       tableDate:[
-          {
-            ordersId:'',
-            recordId:'',
-            ordersTime:'',
-            ordersUser:'',
-            ordersState:'',
-            acId:'',
-            ordersNote:'',
-            ordersType:'',
-            ordersMethdo:'',
-
-        clRecord: {
+        {
+          ordersId:'',
           recordId:'',
-          factoryId:"",
-          brandId:'',
-          designId:'',
-          colorId:'',
-          recordLeaveTime:'',
-          recordVariator:'',
-          recordDisplacement:"",
-          recordMileage:'',
-          recordBegain:'',
-          recordName:'',
-          contactName:'',
-          contactPhone:"",
-          contactEmail:'',
-          recordPrice:0,
-          recordTime:'',
-          recordWay:'',
-          recordNote:'',
-          ggBrand:{
-            brandId:'',
-            brandName:''
-          },
-          ggDesign:{
-            designId: '',
-            designName:'',
-            brandId:'',
-          },
-          ggColor:{
-            colorId:'',
-            colorName:'',
-          }
-        }
+          ordersTime:'',
+          ordersUser:'',
+          ordersState:'',
+          acId:'',
+          ordersNote:'',
+          ordersType:'',
+          ordersMethdo:'',
 
-      }
+          clRecord: {
+            recordId:'',
+            factoryId:"",
+            brandId:'',
+            designId:'',
+            colorId:'',
+            recordLeaveTime:'',
+            recordVariator:'',
+            recordDisplacement:"",
+            recordMileage:'',
+            recordBegain:'',
+            recordName:'',
+            contactName:'',
+            contactPhone:"",
+            contactEmail:'',
+            recordPrice:0,
+            recordTime:'',
+            recordWay:'',
+            recordNote:'',
+            ggBrand:{
+              brandId:'',
+              brandName:''
+            },
+            ggDesign:{
+              designId: '',
+              designName:'',
+              brandId:'',
+            },
+            ggColor:{
+              colorId:'',
+              colorName:'',
+            }
+          }
+
+        }
 
       ],
 

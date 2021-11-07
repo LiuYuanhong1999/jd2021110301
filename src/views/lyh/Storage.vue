@@ -164,7 +164,7 @@ export default {
     //跳转新增
     add(){
       this.$router.push({
-        path: '/AddReturnVist'
+        path: '/AddStorage'
       })
     },
 

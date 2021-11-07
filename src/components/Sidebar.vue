@@ -118,13 +118,13 @@ export default {
                 title: "客户回访",
               },{
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/Storage",
                 title: "车辆入库",
               }
             ]},
           {
             icon: "el-icon-lx-home",
-            index: "/dashboard",
+            index: "7",
             title: "销售管理",
             subs: [
               {
@@ -148,7 +148,7 @@ export default {
           },
           {
             icon: "el-icon-lx-home",
-            index: "/dashboard",
+            index: "8",
             title: "车辆客村",
           },{
             icon: "el-icon-lx-home",

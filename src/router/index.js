@@ -137,6 +137,23 @@ const routes = [
                     title: '增加回访记录'
                 },
                 component:()=>import('../views/lyh/AddReturnVist.vue')
+            },
+            //收车入库
+            {
+                path: '/Storage',
+                name: "Storage",
+                meta: {
+                    title: '收车入库'
+                },
+                component:()=>import('../views/lyh/Storage.vue')
+            },
+            {
+                path: '/AddStorage',
+                name: 'AddStorage',
+                meta: {
+                  title: '入库'
+                },
+                component:()=>import('../views/lyh/AddStorage.vue')
             }
 
 

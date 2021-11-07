@@ -1,15 +1,15 @@
 <template>
   <div >
-    <h3>增加回访记录</h3>
+    <h3>增加入库记录</h3>
     <el-form :model="form"  :rules="rules"
              class="from"
              label-width="120px">
-      <el-form-item label="回访编号" class="post">
+      <el-form-item label="入库编号" class="post">
         <el-input v-model="form.vistId"></el-input>
 
       </el-form-item>
 
-      <el-form-item label="车主" class="post">
+      <el-form-item label="回访单" class="post">
         <el-select v-model="form.assessId" @change="initDate2(form.assessId)">
           <el-option v-for="item in tableDate" :key="item.assessId" :label="item.clOrders.clRecord.recordName" :value="item.assessId"></el-option>
         </el-select>
@@ -32,23 +32,23 @@
       </el-form-item>
 
       <el-form-item label="预售价格:" class="post">
-       {{assessData[0].clOrders.clRecord.recordPrice}}
+        {{assessData[0].clOrders.clRecord.recordPrice}}
       </el-form-item>
       <el-form-item label="初登日期" class="post">
         {{assessData[0].assessBegain}}
       </el-form-item>
 
       <el-form-item label="车牌号" class="post">
-       {{assessData[0].assessCard}}
+        {{assessData[0].assessCard}}
       </el-form-item>
 
 
       <el-form-item label="行驶里程" class="post">
-      {{assessData[0].assessMileage}}
+        {{assessData[0].assessMileage}}
       </el-form-item>
 
       <el-form-item label="联系人" class="post">
-       {{assessData[0].clOrders.clRecord.contactName}}
+        {{assessData[0].clOrders.clRecord.contactName}}
       </el-form-item>
 
       <el-form-item label="手机号码" class="post">
@@ -56,35 +56,35 @@
       </el-form-item>
 
       <el-form-item label="邮箱" class="post">
-       {{assessData[0].clOrders.clRecord.contactEmail}}
+        {{assessData[0].clOrders.clRecord.contactEmail}}
       </el-form-item>
 
       <el-form-item label="燃油种类" class="post">
-       {{assessData[0].assessType}}
+        {{assessData[0].assessType}}
       </el-form-item>
 
       <el-form-item label="是否四轮驱动" class="post">
         {{assessData[0].assessDrive}}
       </el-form-item>
       <el-form-item label="发动机" class="post">
-       {{assessData[0].assessEngine}}
+        {{assessData[0].assessEngine}}
       </el-form-item>
 
       <el-form-item label="档位形式" class="post">
-      {{assessData[0].assessTap}}
+        {{assessData[0].assessTap}}
       </el-form-item>
 
 
       <el-form-item label="过户次数" class="post">
-       {{assessData[0].assessTransferTimes}}
+        {{assessData[0].assessTransferTimes}}
       </el-form-item>
 
       <el-form-item label="总体评价" class="post">
-      {{assessData[0].assessAppraise}}
+        {{assessData[0].assessAppraise}}
       </el-form-item>
 
       <el-form-item label="新车市场价" class="post">
-       {{assessData[0].assessNewcarPrice}}
+        {{assessData[0].assessNewcarPrice}}
       </el-form-item>
 
       <el-form-item label="评估人报价" class="post">
@@ -99,7 +99,7 @@
 
 
       <el-form-item label="主评人" class="post">
-       {{assessData[0].assessUser}}
+        {{assessData[0].assessUser}}
       </el-form-item>
 
       <el-form-item label="副评人" class="post">
@@ -149,12 +149,12 @@ export default {
 
       //表单
       form: {
-          vistId:'',//回访编号
-          assessId:'',//评估编号
-          vistState:'',//评估状态
-          vistPrice:'',//最终成交价格
-          vistTime:'',//回访时间
-          vistNote:'',//备注
+        vistId:'',//回访编号
+        assessId:'',//评估编号
+        vistState:'',//评估状态
+        vistPrice:'',//最终成交价格
+        vistTime:'',//回访时间
+        vistNote:'',//备注
       },
 
 
@@ -254,7 +254,7 @@ export default {
           id:0,
           name:'等待签约'
         },{
-        id:1,
+          id:1,
           name: '签约成功',
         },
         {
@@ -321,10 +321,10 @@ export default {
           })
     },
 
-  //根据评估号查询具体信息
+    //根据评估号查询具体信息
     initDate2(assessId){
       this.axios.get("http://localhost:8088/findBy-clAssessId",{params:{
-        assessId:assessId
+          assessId:assessId
         }})
           .then((v) => {
             this.assessData = v.data;
@@ -345,7 +345,7 @@ export default {
   created() {
     this.findAll();
     this.initDate();
-      this.selectClOrdersType();
+    this.selectClOrdersType();
   }
 }
 </script>

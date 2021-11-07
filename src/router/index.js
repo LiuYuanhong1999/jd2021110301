@@ -72,6 +72,52 @@ const routes = [
                     title: '新增收车登记'
                 },
                  component:()=>import('../views/lyh/AddRecord.vue')
+            },
+            //编辑收车登记
+            {
+              path: '/UpdateRecords',
+                name: 'UpdateRecords',
+                meta: {
+                  title: '编辑收车登记'
+                },
+                component:()=>import('../views/lyh/UpdateRecords.vue')
+            },
+            //客户预约
+            {
+              path: '/Orders',
+              name: 'Orders',
+              meta: {
+                  title: '客户预约'
+              } ,
+              component:()=>import('../views/lyh/Orders.vue')
+            },
+            //新增客户预约
+            {
+              path: '/AddOrders',
+              name: 'AddOrders',
+              meta: {
+                  title: '增加客户预约'
+              },
+              component:()=>import('../views/lyh/AddOrders.vue')
+            },
+
+
+            //车辆评估
+            {
+                path: '/Assess',
+                name: 'Assess',
+                meta: {
+                    title: '车辆评估'
+                },
+                component:()=>import('../views/lyh/Assess.vue')
+            },
+            {
+                path: '/AddAssess',
+                name: 'AddAssess',
+                meta: {
+                    title: '添加评估',
+                },
+                component:()=>import('../views/lyh/AddAssess.vue')
             }
 
         ]

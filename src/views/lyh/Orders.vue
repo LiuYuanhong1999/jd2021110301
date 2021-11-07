@@ -44,24 +44,32 @@
               <el-button type="text" @click="look(scope.row)" size="mini" >查看</el-button>
             </template>
           </el-table-column>
+          <el-table-column prop="ordersId" label="编号" width="80"/>
+          <el-table-column prop="clRecord.recordId" label="编号" width="80"/>
+          <el-table-column prop="clRecord.ggBrand.brandName" label="汽车品牌"/>
+          <el-table-column prop="clRecord.ggDesign.designName" label="汽车款式"/>
+          <el-table-column prop="clRecord.ggColor.colorName" label="车身颜色"/>
+          <el-table-column prop="clRecord.recordLeaveTime" label="出厂时间"/>
+          <el-table-column prop="clRecord.recordVariator" label="变速器"/>
+          <el-table-column prop="clRecord.recordDisplacement" label="排量"/>
+          <el-table-column prop="clRecord.recordMileage" label="行驶里程"/>
+          <el-table-column prop="clRecord.recordBegain" label="初登时间"/>
+          <el-table-column prop="clRecord.recordName" label="车主姓名"/>
+          <el-table-column prop="clRecord.contactName" label="联系人姓名"/>
+          <el-table-column prop="clRecord.contactPhone" label="联系人手机号码"/>
+          <el-table-column prop="clRecord.contactPhone" label="联系人邮箱"/>
+          <el-table-column prop="clRecord.recordPrice" label="预售价格"/>
+          <el-table-column prop="clRecord.recordTime" label="咨询时间"/>
+          <el-table-column prop="clRecord.recordWay" label="咨询方式"/>
+          <el-table-column prop="ordersState" label="车辆状态">
 
-          <el-table-column prop="recordId" label="编号" width="80"/>
-          <el-table-column prop="ggBrand.brandName" label="汽车品牌"/>
-          <el-table-column prop="ggDesign.designName" label="汽车款式"/>
-          <el-table-column prop="ggColor.colorName" label="车身颜色"/>
-          <el-table-column prop="recordLeaveTime" label="出厂时间"/>
-          <el-table-column prop="recordVariator" label="变速器"/>
-          <el-table-column prop="recordDisplacement" label="排量"/>
-          <el-table-column prop="recordMileage" label="行驶里程"/>
-          <el-table-column prop="recordBegain" label="初登时间"/>
-          <el-table-column prop="recordName" label="车主姓名"/>
-          <el-table-column prop="contactName" label="联系人姓名"/>
-          <el-table-column prop="contactPhone" label="联系人手机号码"/>
-          <el-table-column prop="contactPhone" label="联系人邮箱"/>
-          <el-table-column prop="recordPrice" label="预售价格"/>
-          <el-table-column prop="recordTime" label="咨询时间"/>
-          <el-table-column prop="recordWay" label="咨询方式"/>
-          <el-table-column prop="recordNote" label="备注"/>
+
+
+          </el-table-column>
+          <el-table-column prop="ordersUser" label="接待人"/>
+          <el-table-column prop="ordersType" label="预约状态"/>
+          <el-table-column prop="ordersTime" label="预约时间"/>
+          <el-table-column prop="ordersMethdo" label="评估方式"/>
         </el-table>
 
         <!--分页-->
@@ -127,17 +135,17 @@ export default {
       this.dialogVisible=true;
     },
     initDate(){
-        this.axios.get("http://localhost:8088/find-clRecord")
-            .then((v) => {
-              this.tableDate = v.data;
-            })
+      this.axios.get("http://localhost:8088/find-clOrders")
+          .then((v) => {
+            this.tableDate = v.data;
+          })
     },
 
 
     //跳转新增
     add(){
       this.$router.push({
-        path: '/AddRecord'
+        path: '/AddOrders'
       })
     },
 

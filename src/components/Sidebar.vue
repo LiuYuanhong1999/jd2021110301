@@ -106,11 +106,11 @@ export default {
                 title: "收车登记",
               },{
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/Orders",
                 title: "客户预约",
               },{
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/Assess",
                 title: "车辆评估",
               },{
                 icon: "el-icon-lx-home",

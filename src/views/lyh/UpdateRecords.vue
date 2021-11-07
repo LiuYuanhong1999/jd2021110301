@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>收车登记</h3>
+    <h3>编辑收车登记</h3>
     <el-form :model="form" :rules="rules"
              label-width="120px">
       <el-form-item label="登记编号" class="post">
@@ -82,7 +82,7 @@
       </el-form-item>
 
       <el-form-item class="post">
-        <el-button type="primary" @click="addClRecord(),clearFrom()">确定</el-button>
+        <el-button type="primary" @click="addClRecord(),clearFrom(),goBack()">确定</el-button>
         <el-button @click="clearFrom(),goBack()">取消</el-button>
       </el-form-item>
     </el-form>
@@ -112,7 +112,20 @@ export default {
         recordPrice:0,
         recordTime:'',
         recordWay:'',
-        recordNote:''
+        recordNote:'',
+        ggBrand:{
+          brandId:'',
+          brandName:''
+        },
+        ggDesign:{
+          designId: '',
+          designName:'',
+          brandId:'',
+        },
+        ggColor:{
+          colorId:'',
+          colorName:'',
+        }
       },
       //数据验证
       rules: [],
@@ -134,8 +147,7 @@ export default {
     addClRecord(){
       this.axios.post("http://localhost:8088/add-clRecord",this.form)
           .then((v) => {
-           this.$message("登记成功")
-            this.goBack();
+            this.$message("编辑成功")
           })
     },
     //颜色，品牌初始化查询
@@ -153,7 +165,7 @@ export default {
     findDesign(brandId){
 
       this.axios.get("http://localhost:8088/find-clGgDesign",{params:{
-        brandId:brandId
+          brandId:brandId
         }
       })
           .then((v) => {
@@ -162,7 +174,7 @@ export default {
     },
     //清空表单
     clearFrom(){
-          this.form.recordId='',
+      this.form.recordId='',
           this.form.factoryId="",
           this.form.brandId='',
           this.form.designId='',
@@ -183,6 +195,8 @@ export default {
     },
   },
   created() {
+    this.form=JSON.parse(this.$route.query.value)
+
     this.findAll()
   }
 }

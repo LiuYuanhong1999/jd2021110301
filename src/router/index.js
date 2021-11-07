@@ -154,8 +154,104 @@ const routes = [
                   title: '入库'
                 },
                 component:()=>import('../views/lyh/AddStorage.vue')
-            }
+            },
+            {
+                path:'/factory',
+                name:'factory',
+                meta: {
+                    title: '厂商名称'
+                },
+                component:()=>import('../views/tjq/Factory.vue')
+            },
+            {
+                path:'/brand',
+                name:'brand',
+                meta:{
+                    title: '汽车品牌'
+                },
+                component:()=>import('../views/tjq/Brand.vue')
 
+            },
+            {
+                path:'/design',
+                name:'design',
+                meta:{
+                    title: '汽车款式'
+                },
+                component:()=>import('../views/tjq/Design.vue')
+            },
+            {
+                path:'/color',
+                name:'color',
+                meta:{
+                    title:'车身颜色'
+                },
+                component:()=>import('../views/tjq/Color.vue')
+            },
+            {
+                path:'/archiveReason',
+                name:'archiveReason',
+                meta:{
+                    title: '归档原因'
+                },
+                component:()=>import("../views/tjq/ArchiveReason.vue")
+            },
+            {
+                path: '/sellArchiveReason',
+                name:'sellArchiveReason',
+                meta:{
+                    title:'销售归档原因'
+                },
+                component:()=>import("../views/tjq/SellArchiveReason.vue")
+            },
+            {
+                path:'/coustomertype',
+                name:'coustomertype',
+                meta:{
+                    title: '客户类别',
+                },
+                component:()=>import("../views/tjq/Coustomertype.vue")
+            },
+            {
+                path:'/source',
+                name:'source',
+                meta:{
+                    title:'信息来源'
+                },
+                component:()=>import("../views/tjq/Source.vue")
+            },
+            {
+                path:'/coustomer',
+                name:'coustomer',
+                meta:{
+                    title:'客户登记'
+                },
+                component:()=>import("../views/tjq/Coustomer.vue")
+            },
+            {
+                path:'/addCoustomer',
+                name:'addCoustomer',
+                meta:{
+                    title:'客户登记新增'
+                },
+                component:()=>import("../views/tjq/AddCourstomer.vue")
+            },
+            {
+                path:'/visitorylogs',
+                name:'visitorylogs',
+                meta:{
+                    title: '客户跟踪'
+                },
+                component:()=>import("../views/tjq/Visitorylogs.vue")
+            },
+            {
+                path:'/visitorylogsCourstomer',
+                name:'visitorylogsCourstomer',
+                meta:{
+                    title: '客户跟踪新增'
+                },
+                component:()=>import("../views/tjq/VisitorlogsCourstomer.vue")
+            }
 
         ]
     },

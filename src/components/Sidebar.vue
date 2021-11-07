@@ -84,13 +84,39 @@ export default {
             title: "基本信息",
               subs: [
                 {
+                  icon: 'el-icon-lx-home',
+                  index: '/factory',
+                  title: '厂商名称'
+                },
+                {
+                  icon: 'el-icon-lx-home',
+                  index: '/brand',
+                  title: '汽车品牌'
+                },
+                {
+                  icon:'el-icon-lx-home',
+                  index: 'design',
+                  title: '汽车款式'
+                },
+                {
                   icon: "el-icon-lx-home",
                   index: "/archiveReason",
                   title: "归档原因",
-                },{
+                },
+                {
                   icon: "el-icon-lx-home",
-                  index: "/dashboard",
-                  title: "汽车品牌",
+                  index: "/sellArchiveReason",
+                  title: "销售归档原因",
+                },
+                {
+                  icon: 'el-icon-lx-home',
+                  index:'/coustomertype',
+                  title: '客户类别'
+                },
+                {
+                  icon: 'el-icon-lx-home',
+                  index: '/source',
+                  title: '信息来源'
                 }
               ]
           },
@@ -129,11 +155,11 @@ export default {
             subs: [
               {
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/coustomer",
                 title: "客户登记",
               },{
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/visitorylogs",
                 title: "客户跟踪",
               },{
                 icon: "el-icon-lx-home",

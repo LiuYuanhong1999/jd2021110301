@@ -13,11 +13,18 @@ import "element-plus/lib/theme-chalk/index.css"; //引入样式
 import locale from "element-plus/lib/locale/lang/zh-cn";
 
 
+//打印
+import print from "vue-print-nb/print/packages/print";
+
+
+
+
 createApp(App)
     .use(VueAxios,axios)
     .use(ElementPlus, { size: "small", zIndex: 3000, locale })
     .use(store)
     .use(router)
+    .use(print)
     .mount('#app')
 
 //

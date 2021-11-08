@@ -1,7 +1,7 @@
 import {createApp} from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import store from './store/index'
 import installElementPlus from './plugins/element'
 import './assets/css/icon.css'
 
@@ -19,3 +19,20 @@ createApp(App)
     .use(store)
     .use(router)
     .mount('#app')
+
+//
+// export default new Vuex.Store({
+//     state:{
+//         token:''
+//     },
+//     mutations:{
+//         set_token(state, token) {
+//             state.token = token
+//             sessionStorage.token = token
+//         },
+//         del_token(state) {
+//             state.token = ''
+//             sessionStorage.removeItem('token')
+//         }
+//     }
+// })

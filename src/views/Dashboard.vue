@@ -6,8 +6,8 @@
                     <div class="user-info">
                         <img src="../assets/img/img3.png" class="user-avator" alt />
                         <div class="user-info-cont">
-                            <div class="user-info-name">{{ name }}</div>
-                            <div>{{ role }}</div>
+                            <div class="user-info-name"></div>
+                            欢迎您：{{userName}}
                         </div>
 
 
@@ -234,8 +234,20 @@ export default {
             options2,
             todoList,
             role,
+            userName:''
         };
     },
+
+    methods:{
+        userName1(){
+            let a = JSON.parse(localStorage.getItem("loginuser"));
+            console.log(a)
+        }
+    },
+
+    created() {
+        this.userName1()
+    }
 };
 </script>
 

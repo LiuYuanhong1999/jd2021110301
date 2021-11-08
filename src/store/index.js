@@ -1,11 +1,30 @@
 import {createStore} from 'vuex'
 
+
 export default createStore({
+    state1: {
+        userInfo:{
+            id:'',
+            userName:sessionStorage.getItem('username'),
+            userPass:"",
+            isValidate:false,
+            token:"",
+        },
+        rightList:sessionStorage.getItem('getrightList') || '[]',
+    },
+
     state: {
         tagsList: [],
         collapse: false
     },
     mutations: {
+        login(state,user){
+            localStorage.setItem("loginuser",JSON.stringify(user));
+            state.user={
+                ...user
+            }
+            state.user.userName=user.userName
+        },
         delTagsItem(state, data) {
             state
                 .tagsList
@@ -46,6 +65,7 @@ export default createStore({
                 }
             }
         },
+
         // 侧边栏折叠
         handleCollapse(state, data) {
             state.collapse = data;

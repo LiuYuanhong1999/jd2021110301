@@ -25,7 +25,7 @@
                 <!-- 用户名下拉菜单 -->
                 <el-dropdown class="user-name" trigger="click" @command="handleCommand">
                     <span class="el-dropdown-link">
-                        {{username}}
+                        {{userName}}
                         <i class="el-icon-caret-bottom"></i>
                     </span>
                     <template #dropdown>
@@ -34,7 +34,7 @@
                                 <el-dropdown-item>项目仓库</el-dropdown-item>
                             </a>
                             <el-dropdown-item command="user">个人中心</el-dropdown-item>
-                            <el-dropdown-item divided command="loginout">退出登录</el-dropdown-item>
+                            <el-dropdown-item @click="tLogin">退出登录</el-dropdown-item>
                         </el-dropdown-menu>
                     </template>
                 </el-dropdown>
@@ -80,6 +80,8 @@ export default {
             collapse,
             collapseChage,
             handleCommand,
+
+            userName:''
         };
     },
     data(){
@@ -89,10 +91,19 @@ export default {
     },
 
   methods:{
+        tLogin(){
+            this.$store.commit("login",JSON.stringify('1'))
+            this.$router.push({path: '/login'});
+        },
+
+        userName1(){
+            let a = JSON.parse(localStorage.getItem("loginuser"));
+            this.userName = a.slice(1,-1)
+        }
 
   },
   created() {
-
+        this.userName1()
   }
 
 };

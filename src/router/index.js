@@ -56,6 +56,25 @@ const routes = [
                 },
                 component:()=>import("../views/tjq/ArchiveReason.vue")
             },
+
+            {
+                path:'/TheApprover',
+                name:'TheApprover',
+                meta: {
+                    title: '流程审批'
+                },
+                component:()=>import("../views/jl/TheApprover.vue")
+            },
+            {
+                path:'/FlowSetting',
+                name:'FlowSetting',
+                meta: {
+                    title: '流程设置'
+                },
+                component:()=>import("../views/jl/FlowSetting.vue")
+            },
+
+
             //收车登记
             {
               path: '/Record',

@@ -136,7 +136,7 @@ export default {
     },
     //查询所有的意向厂商
     loadfactory(){
-      this.axios.get("http://localhost:8088/factory")
+      this.axios.get("http://localhost:8088/factory/show")
       .then(v=>{
         console.log("输出所有汽车厂商",v);
         this.factorys=v.data;

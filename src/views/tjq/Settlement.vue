@@ -13,14 +13,6 @@
           <el-form-item label="客户名称：">
             <el-input v-model="search.coustomerName"></el-input>
           </el-form-item>
-          <el-form-item label="状态：">
-<!--            <el-input></el-input>-->
-            <el-select v-model="search.orderState">
-              <el-option label="待交割" value="1"/>
-              <el-option label="欠款中" value="2"/>
-              <el-option label="完成" value="3"/>
-            </el-select>
-          </el-form-item>
           <el-form-item>
             <el-button type="primary" size="mini" @click="load">确定</el-button>
             <!--          <el-form-item size="mini">高级</el-form-item>-->
@@ -30,15 +22,16 @@
       <el-main>
         <el-table :data="tableData.slice((pageno-1)*pageSize,pageno*pageSize)" style="width: 100%">
           <el-table-column type="selection" width="55"/>
-          <el-table-column label="操作" width="150px">
+          <el-table-column label="操作" width="200px">
             <template #default="scope">
-              <el-button type="text" v-if="scope.row.orderState=='待交割'" @click="update(scope.row)" size="mini" >修改</el-button>
+              <el-button type="text" size="mini">删除</el-button>
+              <el-button type="text" size="mini" @click="settlement(scope.row)">交割</el-button>
             </template>
           </el-table-column>
           <el-table-column prop="orderId" label="单号" width="130"/>
           <el-table-column prop="orderTime" :formatter="time" label="销售日期" width="140"/>
           <el-table-column prop="sellCoustomer.cusName" label="客户名称" width="120"/>
-          <el-table-column prop="sellCoustomer.cusCellphone" label="电话号码" width="130"/>
+          <el-table-column prop="sellCoustomer.cusCellphone" label="电话号码" width="120"/>
           <el-table-column prop="sellCoustomer.cusPost" label="客户地址" width="120"/>
           <el-table-column prop="sellCoustomer.cusQq" label="QQ" width="120"/>
           <el-table-column prop="sellCoustomer.cusNo" label="客户编号" width="120"/>
@@ -108,6 +101,15 @@ export default {
     }
   },
   methods:{
+    settlement(val){
+      this.$router.push({
+        name:'settlementadd',
+        params:{
+          op:2,
+          entity:JSON.stringify(val)
+        }
+      })
+    },
     //新增转跳页面 进行新增
     add(){
       this.$router.push({
@@ -118,6 +120,7 @@ export default {
       })
     },
     load(){//加载所有数据
+      this.search.orderState=1;
       this.axios.post("http://localhost:8088/order/show",this.search).then(v=>{
         if(v.status==200 && v.data!=null){
           this.tableData=v.data;

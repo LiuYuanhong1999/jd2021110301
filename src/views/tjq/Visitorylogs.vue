@@ -26,7 +26,7 @@
           </el-table-column>-->
           <el-table-column prop="logId" label="编号" width="55px"></el-table-column>
           <el-table-column prop="logTime" :formatter="time"  label="日期" />
-          <el-table-column prop="listNum" label="接待人" />
+          <el-table-column prop="sellCoustomer.cusName" label="接待人" />
           <el-table-column prop="logState" :formatter="logState" label="状态" />
           <el-table-column prop="ggArchive.acCause" label="分类归档"/>
           <el-table-column prop="logType" label="沟通类型" />
@@ -65,9 +65,9 @@
         <el-form-item label="客户编号">
           <el-input v-model="entity.cusNo" type="text"/>
         </el-form-item>
-        <el-form-item label="接待人">
+<!--        <el-form-item label="接待人">
           <el-input v-model="entity.listNum"></el-input>
-        </el-form-item>
+        </el-form-item>-->
         <el-form-item label="状态">
 <!--          <el-input v-model="entity.logState"></el-input>-->
           <el-select v-model="entity.logState">
@@ -132,6 +132,9 @@ export default {
     },
     //确定新增
     submitForm(){
+      let s=JSON.parse(localStorage.getItem("loginuser"))
+      var s1 = s.slice(1,-1);
+      this.entity.listNum=s1;
       var url="http://localhost:8088/logs";
       if(this.index){
         url="http://localhost:8088/logs/update"
@@ -177,7 +180,10 @@ export default {
     },
     //取消新增
     resetForm(){
+      var e={...this.entity}
       this.entity={//新增实体类
+        cusNo:e.cusNo,
+        cusId:e.cusId
       },
           this.index=0;
       this.dialogaddVisible=false;

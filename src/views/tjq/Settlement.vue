@@ -24,7 +24,6 @@
           <el-table-column type="selection" width="55"/>
           <el-table-column label="操作" width="200px">
             <template #default="scope">
-              <el-button type="text" size="mini">删除</el-button>
               <el-button type="text" size="mini" @click="settlement(scope.row)">交割</el-button>
             </template>
           </el-table-column>

@@ -5,131 +5,127 @@
              class="from"
              label-width="120px">
       <el-form-item label="入库编号" class="post">
-        <el-input v-model="form.vistId"></el-input>
+        <el-input v-model="form.storageId"></el-input>
 
       </el-form-item>
-
       <el-form-item label="回访单" class="post">
-        <el-select v-model="form.assessId" @change="initDate2(form.assessId)">
-          <el-option v-for="item in tableDate" :key="item.assessId" :label="item.clOrders.clRecord.recordName" :value="item.assessId"></el-option>
+        <el-select v-model="form.vistId" @change="initDate2(form.vistId)">
+          <el-option v-for="item in tableDate" :key="item.vistId" :label="item.vistId" :value="item.vistId"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="品牌" class="post">
-        {{assessData[0].ggBrand.brandName}}
+        {{assessData[0].clAssess.ggBrand.brandName}}
       </el-form-item>
 
       <el-form-item label="款式" class="post">
-        {{assessData[0].ggDesign.designName}}
+        {{assessData[0].clAssess.ggDesign.designName}}
       </el-form-item>
 
       <el-form-item label="颜色" class="post">
-        {{assessData[0].ggColor.colorName}}
+        {{assessData[0].clAssess.ggColor.colorName}}
       </el-form-item>
 
       <el-form-item label="排量" class="post">
-        {{assessData[0].assessDisplacement}}
+        {{assessData[0].clAssess.assessDisplacement}}
       </el-form-item>
 
       <el-form-item label="预售价格:" class="post">
-        {{assessData[0].clOrders.clRecord.recordPrice}}
+        {{assessData[0].clAssess.clOrders.clRecord.recordPrice}}
       </el-form-item>
       <el-form-item label="初登日期" class="post">
-        {{assessData[0].assessBegain}}
+        {{assessData[0].clAssess.assessBegain}}
       </el-form-item>
 
       <el-form-item label="车牌号" class="post">
-        {{assessData[0].assessCard}}
+        {{assessData[0].clAssess.assessCard}}
       </el-form-item>
 
 
       <el-form-item label="行驶里程" class="post">
-        {{assessData[0].assessMileage}}
+        {{assessData[0].clAssess.assessMileage}}
       </el-form-item>
 
       <el-form-item label="联系人" class="post">
-        {{assessData[0].clOrders.clRecord.contactName}}
+        {{assessData[0].clAssess.clOrders.clRecord.contactName}}
       </el-form-item>
 
       <el-form-item label="手机号码" class="post">
-        {{assessData[0].clOrders.clRecord.contactPhone}}
+        {{assessData[0].clAssess.clOrders.clRecord.contactPhone}}
       </el-form-item>
 
       <el-form-item label="邮箱" class="post">
-        {{assessData[0].clOrders.clRecord.contactEmail}}
+        {{assessData[0].clAssess.clOrders.clRecord.contactEmail}}
       </el-form-item>
 
       <el-form-item label="燃油种类" class="post">
-        {{assessData[0].assessType}}
+        {{assessData[0].clAssess.assessType}}
       </el-form-item>
 
       <el-form-item label="是否四轮驱动" class="post">
-        {{assessData[0].assessDrive}}
+        {{assessData[0].clAssess.assessDrive}}
       </el-form-item>
       <el-form-item label="发动机" class="post">
-        {{assessData[0].assessEngine}}
+        {{assessData[0].clAssess.assessEngine}}
       </el-form-item>
 
       <el-form-item label="档位形式" class="post">
-        {{assessData[0].assessTap}}
+        {{assessData[0].clAssess.assessTap}}
       </el-form-item>
 
 
       <el-form-item label="过户次数" class="post">
-        {{assessData[0].assessTransferTimes}}
+        {{assessData[0].clAssess.assessTransferTimes}}
       </el-form-item>
 
       <el-form-item label="总体评价" class="post">
-        {{assessData[0].assessAppraise}}
+        {{assessData[0].clAssess.assessAppraise}}
       </el-form-item>
 
       <el-form-item label="新车市场价" class="post">
-        {{assessData[0].assessNewcarPrice}}
+        {{assessData[0].clAssess.assessNewcarPrice}}
       </el-form-item>
 
       <el-form-item label="评估人报价" class="post">
-        {{assessData[0].assessOffice}}
+        {{assessData[0].clAssess.assessOffice}}
       </el-form-item>
 
 
 
       <el-form-item label="定价中心" class="post">
-        {{assessData[0].assessPrice}}
+        {{assessData[0].clAssess.assessPrice}}
       </el-form-item>
 
 
       <el-form-item label="主评人" class="post">
-        {{assessData[0].assessUser}}
+        {{assessData[0].clAssess.assessUser}}
       </el-form-item>
 
       <el-form-item label="副评人" class="post">
-        {{assessData[0].assessReview}}
+        {{assessData[0].clAssess.assessReview}}
       </el-form-item>
 
 
       <el-form-item label="最终定价" class="post">
-        <el-input v-model="form.vistPrice"></el-input>
+       {{assessData[0].vistPrice}}
       </el-form-item>
 
-      <el-form-item label="评估状态" class="post">
-        <el-select v-model="form.vistState">
-          <el-option v-for="item in vistStates" :key="item.id" :label="item.name" :value="item.id"></el-option>
-        </el-select>
+
+
+      <el-form-item label="销售价格" class="post">
+      <el-input v-model="form.storagePrcie"></el-input>
       </el-form-item>
 
-      <el-form-item label="回访时间" class="post">
-        <el-date-picker v-model="form.vistTime"></el-date-picker>
+      <el-form-item label="操作员" class="post">
+      <el-input v-model="form.storageUser"></el-input>
       </el-form-item>
-
-      <el-form-item label="归档类型" class="post">
-        <el-select v-model="form.acId">
-          <el-option v-for="item in clOrdersType" :key="item.acId" :label="item.acCause" :value="item.acId"></el-option>
-        </el-select>
+      <el-form-item label="入库时间" class="post">
+        <el-date-picker v-model="form.storageTime"></el-date-picker>
       </el-form-item>
 
 
       <el-form-item class="post">
-        <el-button type="primary" @click="addClReturnVist(),clearFrom()">确定</el-button>
+        <el-button type="primary" @click="addClStorage(),clearFrom()">确定</el-button>
 
         <el-button @click="clearFrom(),goBack()">取消</el-button>
         <br/><br/><br/><br/>
@@ -144,17 +140,102 @@ export default {
   data() {
     return {
 
-      //回访初始信息
+      //回访签约成功信息
       tableDate:[],
 
       //表单
       form: {
-        vistId:'',//回访编号
-        assessId:'',//评估编号
-        vistState:'',//评估状态
-        vistPrice:'',//最终成交价格
-        vistTime:'',//回访时间
-        vistNote:'',//备注
+       storageId:'',
+        storagePrcie:'',
+        storageUser:'',
+        storageTime:'',
+        clReturnVist:{
+          vistId:"",
+          assessId:'',
+          vistState:'',
+          vistPrice:'',
+          vistTime:"",
+          vistNote:"",
+          acId:'',
+          clAssess: {
+            assessId:'',//评估编号
+            ordersId: '',//预约编号
+            assessCard:'',//车牌号
+            assessType:'',//燃油种类
+            assessDrive:'',//是否四轮驱动
+            assessEngine:'',//发动机
+            assessTap:'',//档位形式
+            assessTransferTimes:'',//过户次数
+            assessLicense:'',//行驶证,
+            assessAppraise:'',//总体评价
+            assessNewcarPrice:'',//新车市场价
+            assessOffice:"",//评估人报价
+            assessUser:'',//评估人
+            assessPrice:'',//定价中心
+            assessFinalPrice:'',//最终定价
+            assessReview:"",//复核人员
+            assessNote:'',//备注
+            factoryId:"",//厂商编号
+            brandId:'',//品牌编号
+            designId:'',//款式编号
+            colorId:'',//颜色编号
+            assessVariator:'',//变速器
+            assessDisplacement:'',//排量
+            assessMileage:'',//行驶里程
+            assessBegain:"",//初登时间
+            assessLeaveTime:'',//出厂时间
+            clOrders:{
+              ordersId:'',
+              recordId:'',
+              ordersTime:'',
+              ordersUser:'',
+              ordersState:'',
+              acId:'',
+              ordersNote:'',
+              ordersType:'',
+              ordersMethdo:'',
+
+              clRecord: {
+                recordId:'',
+                factoryId:"",
+                brandId:'',
+                designId:'',
+                colorId:'',
+                recordLeaveTime:'',
+                recordVariator:'',
+                recordDisplacement:"",
+                recordMileage:'',
+                recordBegain:'',
+                recordName:'',
+                contactName:'',
+                contactPhone:"",
+                contactEmail:'',
+                recordPrice:0,
+                recordTime:'',
+                recordWay:'',
+                recordNote:'',
+              }
+
+
+
+
+            },
+
+            ggBrand:{
+              brandId:'',
+              brandName:''
+            },
+            ggDesign:{
+              designId: '',
+              designName:'',
+              brandId:'',
+            },
+            ggColor:{
+              colorId:'',
+              colorName:'',
+            }
+          }
+        }
       },
 
 
@@ -166,7 +247,16 @@ export default {
 
       //评估信息
       assessData:[
+
         {
+          vistId:"",
+          assessId:'',
+          vistState:'',
+          vistPrice:'',
+          vistTime:"",
+          vistNote:"",
+          acId:'',
+          clAssess: {
           assessId:'',//评估编号
           ordersId: '',//预约编号
           assessCard:'',//车牌号
@@ -244,6 +334,8 @@ export default {
             colorName:'',
           }
         }
+        }
+
 
 
       ],
@@ -273,11 +365,12 @@ export default {
       })
     },
 
-    //增加评估记录
-    addClReturnVist(){
-      this.axios.post("http://localhost:8088/add-clReturnVist",this.form)
+    //增加入库记录同时入库
+    addClStorage(){
+      this.axios.post("http://localhost:8088/add-inventory",this.form)
+      this.axios.post("http://localhost:8088/add-clStorage",this.form)
           .then((v) => {
-            this.$message("登记成功")
+            this.$message("入库成功")
             this.goBack();
           })
     },
@@ -312,22 +405,22 @@ export default {
 
     },
 
-    //初始化查询所有评估信息
+    //初始化查询所有回访签约成功信息信息
     initDate(){
-
-      this.axios.get("http://localhost:8088/find-clAssess")
+      this.axios.get("http://localhost:8088/findBy-ClStorage")
           .then((v) => {
             this.tableDate = v.data;
           })
     },
 
     //根据评估号查询具体信息
-    initDate2(assessId){
-      this.axios.get("http://localhost:8088/findBy-clAssessId",{params:{
-          assessId:assessId
+    initDate2(vistId){
+      this.axios.get("http://localhost:8088/findBy-ClStorageRecord",{params:{
+          vistId:vistId
         }})
           .then((v) => {
             this.assessData = v.data;
+            this.form.clReturnVist=this.assessData[0];
           })
     },
     //初始化查询归档类型

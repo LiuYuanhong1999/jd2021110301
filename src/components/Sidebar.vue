@@ -175,7 +175,22 @@ export default {
           {
             icon: "el-icon-lx-home",
             index: "8",
-            title: "车辆客村",
+            title: "车辆库存",
+            subs: [
+              {
+                icon: "el-icon-lx-home",
+                index: "/Initial",
+                title: "初始入库",
+              },
+              {
+                icon: "el-icon-lx-home",
+                index: "/Inventory",
+                title: "库存查看",
+              }
+
+            ]
+
+
           },{
             icon: "el-icon-lx-home",
             index: "/dashboard",

@@ -155,6 +155,25 @@ const routes = [
                 },
                 component:()=>import('../views/lyh/AddStorage.vue')
             },
+
+            //车辆库存
+            {
+              path: '/Initial',
+              name: 'Initial',
+              meta: {
+                  title: '初始入库'
+              }  ,
+                component:()=>import('../views/lyh/Initial.vue')
+            },
+            {
+              path: '/Inventory',
+              name: 'Inventory',
+              meta: {
+                  title: '库存查看'
+              }  ,
+                component:()=>import('../views/lyh/Inventory.vue')
+            },
+
             {
                 path:'/factory',
                 name:'factory',

@@ -60,10 +60,10 @@ export default {
             //二级菜单
             subs:[
               {
-                index:'/dashboard',
+                index:'/TheApprover',
                 title:'流程审批'
               },{
-                index:'/dashboard',
+                index:'/FlowSetting',
                 title:'流程设置'
               },
               {

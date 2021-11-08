@@ -2,21 +2,10 @@ import {createRouter, createWebHashHistory} from "vue-router";
 import Home from "../views/Home.vue";
 
 const routes = [
-
-    {
-        path: "/",
-        name: "Login",
-        meta: {
-            title: '登录'
-        },
-        component: () => import ( /* webpackChunkName: "login" */ "../views/Login.vue")
-    },
-
-
-    {
-        path: '/s',
-        redirect: '/dashboard'
-    },
+    // {
+    //     path: '/',
+    //     redirect: '/dashboard'
+    // }, {
     {
         path: "/",
         name: "Home",
@@ -54,6 +43,22 @@ const routes = [
                     title: '归档原因'
                 },
                 component:()=>import("../views/tjq/ArchiveReason.vue")
+            },
+            {
+                path:'/TheApprover',
+                name:'TheApprover',
+                meta: {
+                    title: '流程审批'
+                },
+                component:()=>import("../views/jl/TheApprover.vue")
+            },
+            {
+                path:'/FlowSetting',
+                name:'FlowSetting',
+                meta: {
+                    title: '流程设置'
+                },
+                component:()=>import("../views/jl/FlowSetting.vue")
             }
 
         ]

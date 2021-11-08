@@ -317,6 +317,32 @@ const routes = [
                 },
                 component:()=>import('../views/hlj/SCFK.vue')
             },
+            {
+                path: '/FKCX',
+                name: 'FKCX',
+                meta: {
+                    title: '收车付款查询',
+                },
+                component:()=>import('../views/hlj/FKCX.vue')
+            },
+
+            {
+                path: '/ZCBX',
+                name: 'ZCBX',
+                meta: {
+                    title: '财务报销审批',
+                },
+                component:()=>import('../views/hlj/ZCBX.vue')
+            },
+            {
+                path: '/ZCJL',
+                name: 'ZCJL',
+                meta: {
+                    title: '财务报销记录',
+                },
+                component:()=>import('../views/hlj/ZCJL.vue')
+            },
+
 
 
 

@@ -64,8 +64,8 @@
           <el-table-column prop="clAssess.assessOffice" label="评估人报价"/>
           <el-table-column prop="clAssess.assessPrice" label="定价中心"/>
           <el-table-column prop="vistPrice" label="最终定价"/>
-          <el-table-column prop="clAssess.assessUser" label="主评"/>
-          <el-table-column prop="clAssess.assessReview" label="副评"/>
+          <el-table-column prop="clAssess.assessUser" label="主评人"/>
+<!--          <el-table-column prop="clAssess.assessReview" label="副评"/>-->
           <el-table-column prop="vistState" label="车辆状态">
             <template #default="scope">
               <template v-if="scope.row.vistState=='0'">

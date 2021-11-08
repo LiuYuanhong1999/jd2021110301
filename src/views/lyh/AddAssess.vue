@@ -5,7 +5,7 @@
              class="from"
              label-width="120px">
       <el-form-item label="评估编号" class="post">
-        <el-input v-model="form.assessId"></el-input>
+        <el-input v-model="form.assessId" :disabled="true"></el-input>
 
       </el-form-item>
 
@@ -122,13 +122,13 @@
       </el-form-item>
 
       <el-form-item label="评估人" class="post">
-        <el-input v-model="form.assessUser"></el-input>
+        <el-input v-model="form.assessUser"  :disabled="true"></el-input>
       </el-form-item>
 
 
-      <el-form-item label="复评人" class="post">
-        <el-input v-model="form.assessReview"></el-input>
-      </el-form-item>
+<!--      <el-form-item label="复评人" class="post">-->
+<!--        <el-input v-model="form.assessReview"></el-input>-->
+<!--      </el-form-item>-->
 
 
 
@@ -345,11 +345,40 @@ export default {
             this.tableDate = v.data;
           })
     },
+    findUserName(){
+      let s=JSON.parse(localStorage.getItem("loginuser"))
+      var s1 = s.slice(1,-1);
+      this.axios.get("http://localhost:8088/sys/find-userId",{params:{
 
+          listNum:s1
 
+        }})
+          .then(v=>{
+            this.form.assessUser=v.data.listName
+          })
+    },
 
+    // 获取当前日期的方法
+    randomNumber() {
+      const now = new Date()
+      let month = now.getMonth() + 1
+      let day = now.getDate()
+      let hour = now.getHours()
+      let minutes = now.getMinutes()
+      let seconds = now.getSeconds()
+      month = this.setTimeDateFmt(month)
+      hour = this.setTimeDateFmt(hour)
+      minutes = this.setTimeDateFmt(minutes)
+      seconds = this.setTimeDateFmt(seconds)
+      return now.getFullYear().toString() + month.toString() + day + hour + minutes + seconds + (Math.round(Math.random() * 23 + 100)).toString()
+    },
+    setTimeDateFmt(month) {
+      return 0;
+    },
   },
   created() {
+    this.form.assessId="PG"+this.randomNumber()
+    this.findUserName();
     this.findAll();
     this.initDate();
 

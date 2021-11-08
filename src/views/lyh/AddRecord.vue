@@ -4,11 +4,11 @@
     <el-form :model="form" :rules="rules"
              label-width="120px">
       <el-form-item label="登记编号" class="post">
-        <el-input v-model="form.recordId"></el-input>
+        <el-input v-model="form.recordId" :disabled="true"></el-input>
       </el-form-item>
-      <el-form-item label="厂商名称" class="post">
-        <el-select v-model="form.factoryId"></el-select>
-      </el-form-item>
+<!--      <el-form-item label="厂商名称" class="post">-->
+<!--        <el-select v-model="form.factoryId"></el-select>-->
+<!--      </el-form-item>-->
       <el-form-item label="汽车品牌" class="post">
         <el-select  v-model="form.brandId" @change="findDesign(form.brandId)">
           <el-option v-for="item in brand" :key="item.brandId" :label="item.brandName" :value="item.brandId"></el-option>
@@ -181,8 +181,28 @@ export default {
           this.form.recordWay='',
           this.form.recordNote=''
     },
+
+    // 获取当前日期的方法
+    randomNumber() {
+      const now = new Date()
+      let month = now.getMonth() + 1
+      let day = now.getDate()
+      let hour = now.getHours()
+      let minutes = now.getMinutes()
+      let seconds = now.getSeconds()
+      month = this.setTimeDateFmt(month)
+      hour = this.setTimeDateFmt(hour)
+      minutes = this.setTimeDateFmt(minutes)
+      seconds = this.setTimeDateFmt(seconds)
+      return now.getFullYear().toString() + month.toString() + day + hour + minutes + seconds + (Math.round(Math.random() * 23 + 100)).toString()
+    },
+    setTimeDateFmt(month) {
+      return 0;
+    },
+
   },
   created() {
+    this.form.recordId="SC"+this.randomNumber()
     this.findAll()
   }
 }

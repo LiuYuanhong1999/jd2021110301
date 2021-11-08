@@ -5,7 +5,7 @@
              class="from"
              label-width="120px">
       <el-form-item label="入库编号" class="post">
-        <el-input v-model="form.storageId"></el-input>
+        <el-input v-model="form.storageId" :disabled="true"></el-input>
 
       </el-form-item>
       <el-form-item label="回访单" class="post">
@@ -430,12 +430,27 @@ export default {
           .then((v) => {
             this.clOrdersType = v.data;
           })
-
-
     },
-
+    // 获取当前日期的方法
+    randomNumber() {
+      const now = new Date()
+      let month = now.getMonth() + 1
+      let day = now.getDate()
+      let hour = now.getHours()
+      let minutes = now.getMinutes()
+      let seconds = now.getSeconds()
+      month = this.setTimeDateFmt(month)
+      hour = this.setTimeDateFmt(hour)
+      minutes = this.setTimeDateFmt(minutes)
+      seconds = this.setTimeDateFmt(seconds)
+      return now.getFullYear().toString() + month.toString() + day + hour + minutes + seconds + (Math.round(Math.random() * 23 + 100)).toString()
+    },
+    setTimeDateFmt(month) {
+      return 0;
+    },
   },
   created() {
+    this.form.storageId="KC"+this.randomNumber()
     this.findAll();
     this.initDate();
     this.selectClOrdersType();

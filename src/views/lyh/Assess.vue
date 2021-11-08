@@ -68,8 +68,8 @@
           <el-table-column prop="assessNewcarPrice" label="新车市场价"/>
           <el-table-column prop="assessOffice" label="评估人报价"/>
           <el-table-column prop="assessPrice" label="定价中心"/>
-          <el-table-column prop="assessUser" label="主评"/>
-          <el-table-column prop="assessReview" label="副评"/>
+          <el-table-column prop="assessUser" label="主评人"/>
+<!--          <el-table-column prop="assessReview" label="副评"/>-->
         </el-table>
 
         <!--分页-->

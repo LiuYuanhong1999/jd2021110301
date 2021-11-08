@@ -292,6 +292,34 @@ const routes = [
                 component:()=>import("../views/tjq/VisitorlogsCourstomer.vue")
             },
 
+            //客户欠款统计
+            {
+                path: '/QKTJ',
+                name: 'QKTJ',
+                meta: {
+                    title: '客户欠款统计',
+                },
+                component:()=>import('../views/hlj/QKTJ.vue')
+            },
+            {
+                path: '/HKXQ',
+                name: 'HKXQ',
+                meta: {
+                    title: '客户还款记录',
+                },
+                component:()=>import('../views/hlj/HKXQ.vue')
+            },
+            {
+                path: '/SCFK',
+                name: 'SCFK',
+                meta: {
+                    title: '收车付款登记',
+                },
+                component:()=>import('../views/hlj/SCFK.vue')
+            },
+
+
+
             //权限
             {
                 path: '/User',

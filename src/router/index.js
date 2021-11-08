@@ -1,10 +1,11 @@
 import {createRouter, createWebHashHistory} from "vue-router";
 import Home from "../views/Home.vue";
+import store from "../store/index"
 
 const routes = [
 
     {
-        path: "/",
+        path: "/login",
         name: "Login",
         meta: {
             title: '登录'
@@ -65,6 +66,48 @@ const routes = [
                 component:()=>import('../views/lyh/Record.vue')
             },
 
+            //权限
+            {
+                path: '/User',
+                name: 'User',
+                meta: {
+                    title: '用户列表',
+                },
+                component:()=>import('../views/sys/User.vue')
+            },
+            {
+                path: '/LoginRizhi',
+                name: 'LoginRizhi',
+                meta: {
+                    title: '登录日志',
+                },
+                component:()=>import('../views/sys/LoginRizhi.vue')
+            },
+            {
+                path: '/JueSe',
+                name: 'JueSe',
+                meta: {
+                    title: '角色设置',
+                },
+                component:()=>import('../views/sys/JueSe.vue')
+            },
+            {
+                path: '/Dept',
+                name: 'Dept',
+                meta: {
+                    title: '部门管理',
+                },
+                component:()=>import('../views/sys/Dept.vue')
+            },
+            {
+                path: '/Menu',
+                name: 'Menu',
+                meta: {
+                    title: '菜单管理',
+                },
+                component:()=>import('../views/sys/Menu.vue')
+            },
+
         ]
     },
 ];
@@ -74,19 +117,18 @@ const router = createRouter({
     routes
 });
 
-router.beforeEach((to, from, next) => {
-    document.title = `${to.meta.title} | vue-manage-system`;
-    const role = localStorage.getItem('ms_username');
-    if (!role && to.path !== '/login') {
-        next('/login');
-    } else if (to.meta.permission) {
-        // 如果是管理员权限则可进入，这里只是简单的模拟管理员权限而已
-        role === 'admin'
-            ? next()
-            : next('/403');
-    } else {
-        next();
-    }
-});
+
+    router.beforeEach((to, from, next) => {
+        if (JSON.parse(localStorage.getItem("loginuser"))) {//toekn存在
+            if (JSON.parse(localStorage.getItem("loginuser")).length!=3) {//token存在，并且是login页面
+                    next();
+            } else {
+                next();
+            }
+        } else {
+            next();
+        }
+    })
+
 
 export default router;

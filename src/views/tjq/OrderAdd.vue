@@ -111,6 +111,9 @@ export default {
   methods: {
     //新增
     onSubmit(){
+      let s=JSON.parse(localStorage.getItem("loginuser"))
+      var s1 = s.slice(1,-1);
+      this.form.listNum=s1;
       var url="http://localhost:8088/order"
       if(this.op==2){
         url="http://localhost:8088/order/update"

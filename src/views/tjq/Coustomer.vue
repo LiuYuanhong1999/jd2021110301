@@ -50,7 +50,7 @@
           <el-table-column prop="cusFactor" label="考虑因素" width="120"/>
           <el-table-column prop="cusBudget" label="预算" width="120"/>
           <el-table-column prop="cusTime" :formatter="time" label="建档日期" width="140"/>
-          <el-table-column prop="listNum" label="客户顾问" width="120"/>
+          <el-table-column prop="userList.listName" label="客户顾问" width="120"/>
           <el-table-column prop="cusState" label="客户状态" width="120"/>
         </el-table>
         <el-pagination background  hide-on-single-page @current-change="handChange" layout="prev, pager, next" :page-size="pageSize" :total="tableData.length">

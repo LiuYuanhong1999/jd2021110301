@@ -144,6 +144,8 @@ export default {
       //表单绑定的实体类
       tableDate:[],
 
+      userList:{},
+
       //登记信息
       tableDate2:[
         {
@@ -186,7 +188,7 @@ export default {
         ordersId:'',//收购编号
         recordId:'',//登记编号
         ordersTime:'',//预约日期
-        ordersUser:'张三',//接待人
+        ordersUser:'',//接待人
         ordersState:'',//预约状态
         acId:'',//归档编号
         ordersNote:'',//沟通内容
@@ -253,6 +255,18 @@ export default {
     }
   },
   methods:{
+    findUserName(){
+      let s=JSON.parse(localStorage.getItem("loginuser"))
+      var s1 = s.slice(1,-1);
+      this.axios.get("http://localhost:8088/sys/find-userId",{params:{
+
+        listNum:s1
+
+      }})
+      .then(v=>{
+        this.form.ordersUser=v.data.listName
+      })
+    },
 
     findBYRecordId(recordId){
       this.axios.get("http://localhost:8088/find-clRecordId",{params:{
@@ -327,6 +341,7 @@ export default {
 
   },
   created() {
+    this.findUserName();
     this.selectClOrdersType();
     this.initDate();
     this.findAll()

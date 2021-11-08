@@ -271,7 +271,7 @@ const routes = [
                     title: '客户跟踪新增'
                 },
                 component:()=>import("../views/tjq/VisitorlogsCourstomer.vue")
-            }
+            },
 
             //权限
             {

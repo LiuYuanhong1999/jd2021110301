@@ -98,7 +98,7 @@ export default {
 
         userName1(){
             let a = JSON.parse(localStorage.getItem("loginuser"));
-            this.userName = a.slice(1,-1)
+            // this.userName = a.slice(1,-1)
         }
 
   },

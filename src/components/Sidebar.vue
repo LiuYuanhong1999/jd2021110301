@@ -31,7 +31,7 @@ export default {
     methods:{
         homeMenu(){
             let a = JSON.parse(localStorage.getItem("loginuser"));
-            let s = a.slice(1,-1)
+              let s = a.slice(1,-1)
             this.axios.get("http://localhost:8088/sys/home-menu",{params:{listNum:s}})
                 .then(v=>{
                     this.menus=v.data

@@ -2,7 +2,6 @@
   <div>
     <div class="top">
       <el-button type="primary" @click="add" size="mini">新增</el-button>
-      <el-button type="primary" size="mini">删除</el-button>
       <el-button type="primary" @click="load" size="mini">刷新</el-button>
     </div>
     <el-container>
@@ -34,9 +33,7 @@
           <el-table-column type="selection" width="55"/>
           <el-table-column label="操作" width="200px">
             <template #default="scope">
-              <el-button type="text" size="mini">删除</el-button>
-              <el-button type="text" size="mini" @click="update(scope.row)">修改</el-button>
-              <el-button type="text" @click="look(scope.row)" size="mini" >查看</el-button>
+              <el-button type="text" size="mini"  v-if="scope.row.cusState=='跟踪中'" @click="update(scope.row)">修改</el-button>
             </template>
           </el-table-column>
           <el-table-column prop="cusNo" label="编号" width="120"/>
@@ -98,8 +95,9 @@ export default {
       },
       courstomerTypes:[],//客户类别
       search:{},//搜索框
-      pageSize:1,
+      pageSize:5,
       pageno:1,
+      details:{},//详情
     }
   },
   methods:{
@@ -130,7 +128,8 @@ export default {
       })
     },
     //查询详情
-    look(){
+    look(val){
+      this.details=val;
       this.dialogVisible=true;
     },
     time:function(row, column, state, index){

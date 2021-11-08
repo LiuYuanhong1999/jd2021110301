@@ -229,14 +229,14 @@ const routes = [
                 component:()=>import("../views/tjq/Coustomer.vue")
             },
             {
-                path:'/addCoustomer',
-                name:'addCoustomer',
+                path:'/addcoustomer',
+                name:'addcoustomer',
                 meta:{
                     title:'客户登记新增'
                 },
                 component:()=>import("../views/tjq/AddCourstomer.vue")
             },
-            {
+            {//visitorylogs
                 path:'/visitorylogs',
                 name:'visitorylogs',
                 meta:{
@@ -245,12 +245,45 @@ const routes = [
                 component:()=>import("../views/tjq/Visitorylogs.vue")
             },
             {
-                path:'/visitorylogsCourstomer',
-                name:'visitorylogsCourstomer',
+                path:'/visitorlogsCourstomer',
+                name:'visitorlogsCourstomer',
                 meta:{
                     title: '客户跟踪新增'
                 },
                 component:()=>import("../views/tjq/VisitorlogsCourstomer.vue")
+            },
+            {
+              path:'/order',
+                name:'order',
+                meta:{
+                  title: '销售订单',
+                },
+                component:()=>import("../views/tjq/Order.vue")
+            },
+            {//订单 新增
+                path:'/orderAdd',
+                name:'orderAdd',
+                meta:{
+                    title: '销售订单新增'
+                },
+                component:()=>import("../views/tjq/OrderAdd.vue")
+            },
+            {//订单 交割
+                path:'/settlement',
+                name:'settlement',
+                meta:{
+                    title: '车辆交割'
+                },
+                component:()=>import("../views/tjq/Settlement.vue")
+            },
+            {//车辆交割 新增
+                path:'/settlementadd',
+                name:'settlementadd',
+                meta:{
+                    title: '正式交割'
+                },component:()=>import("../views/tjq/SettlementAdd.vue")
+
+
             }
 
         ]

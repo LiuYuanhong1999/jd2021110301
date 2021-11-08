@@ -159,15 +159,15 @@ export default {
                 title: "客户登记",
               },{
                 icon: "el-icon-lx-home",
-                index: "/visitorylogs",
+                index: "/visitorlogsCourstomer",
                 title: "客户跟踪",
               },{
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/order",
                 title: "销售订单",
               },{
                 icon: "el-icon-lx-home",
-                index: "/dashboard",
+                index: "/settlement",
                 title: "车辆交割",
               }
             ]

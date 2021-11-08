@@ -2,7 +2,6 @@
   <div>
     <div class="top">
       <el-button type="primary" @click="add" size="mini">新增</el-button>
-      <el-button type="primary" size="mini">删除</el-button>
       <el-button type="primary" @click="load" size="mini">刷新</el-button>
     </div>
     <el-container>
@@ -32,11 +31,9 @@
       <el-main>
         <el-table :data="tableData.slice((pageno-1)*pageSize,pageno*pageSize)" style="width: 100%">
           <el-table-column type="selection" width="55"/>
-          <el-table-column label="操作" width="200px">
+          <el-table-column label="操作" width="150px">
             <template #default="scope">
-              <el-button type="text" size="mini">删除</el-button>
-              <el-button type="text" size="mini" @click="update(scope.row)">修改</el-button>
-              <el-button type="text" @click="look(scope.row)" size="mini" >查看</el-button>
+              <el-button type="text" size="mini" v-if="scope.row.cusState=='跟踪中'" @click="update(scope.row)">修改</el-button>
             </template>
           </el-table-column>
           <el-table-column  width="100">
@@ -103,14 +100,13 @@ export default {
       },
       courstomerTypes:[],//客户类别
       search:{},//搜索框
-      pageSize:1,
+      pageSize:5,
       pageno:1,
     }
   },
   methods:{
     //转跳到访问记录的页面
     loadrecord(val){
-      console.log("eeeeeee",val);
       this.$router.push({
         name:'visitorylogs',
         params:{
@@ -141,12 +137,12 @@ export default {
       this.search.cusState="跟踪中"
       this.axios.post("http://localhost:8088/coustomer/show",this.search)
           .then(v=>{
-            console.log("v",v)
             this.tableData=v.data;
           })
     },
     //查询详情
-    look(){
+    look(val){
+      console.log("详情",val);
       this.dialogVisible=true;
     },
     time:function(row, column, state, index){
@@ -160,7 +156,6 @@ export default {
     loadCourstomerType(){
       this.axios.get("http://localhost:8088/coustomertype")
           .then(v=>{
-            console.log("所有的客户类别",v)
             this.courstomerTypes=v.data
           })
     },

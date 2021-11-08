@@ -6,7 +6,7 @@
       <el-button type="primary" @click="load" size="mini">刷新</el-button>
     </div>
     <el-container>
-      <el-header height="40px">
+<!--      <el-header height="40px">
         <el-form size="mini" inline :model="search">
           <el-form-item label="名称：">
             <el-input type="text" v-model="search.ctName"></el-input>
@@ -15,24 +15,22 @@
             <el-button type="primary" @click="load" size="mini">确定</el-button>
           </el-form-item>
         </el-form>
-      </el-header>
+      </el-header>-->
       <el-main>
         <el-table :data="tableData.slice((pageno-1)*pageSize,pageno*pageSize)"  style="width: 100%">
           <el-table-column type="selection" width="55"/>
-          <el-table-column label="操作" width="200px">
+<!--          <el-table-column label="操作" width="70">
             <template #default="scope">
-              <!--              <el-button type="text" size="mini">删除</el-button>-->
               <el-button type="text" size="mini" @click="update(scope.row)">修改</el-button>
-              <!--              <el-button type="text" @click="look(scope.row)" size="mini" >查看</el-button>-->
             </template>
-          </el-table-column>
+          </el-table-column>-->
           <el-table-column prop="logId" label="编号" width="55px"></el-table-column>
-          <el-table-column prop="logTime" :formatter="time" label="日期" />
+          <el-table-column prop="logTime" :formatter="time"  label="日期" />
           <el-table-column prop="listNum" label="接待人" />
           <el-table-column prop="logState" :formatter="logState" label="状态" />
           <el-table-column prop="ggArchive.acCause" label="分类归档"/>
           <el-table-column prop="logType" label="沟通类型" />
-          <el-table-column prop="logContext" label="沟通内容" />
+          <el-table-column prop="logContext" label="沟通内容" show-overflow-tooltip/>
 
         </el-table>
         <el-pagination background  hide-on-single-page @current-change="handChange" layout="prev, pager, next" :page-size="pageSize" :total="tableData.length">
@@ -134,13 +132,16 @@ export default {
     },
     //确定新增
     submitForm(){
-      console.log("添加实体",this.entity);
       var url="http://localhost:8088/logs";
       if(this.index){
         url="http://localhost:8088/logs/update"
       }
       this.axios.post(url,this.entity)
           .then(v=>{
+            if(this.entity.logState=='交易成功'){
+              this.$router.replace("/order")
+              return;
+            }
             this.resetForm();
             this.load();
             this.index=0;
@@ -153,9 +154,10 @@ export default {
         return;
       }
       var cc=JSON.parse(com);
+      console.log("请输入",com)
       this.entity.cusId=cc.acId;
       this.entity.cusNo=cc.cusNo;
-
+      this.search.cusId=cc.acId;
     },
     //加载所有数据
     load(){

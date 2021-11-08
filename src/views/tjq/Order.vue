@@ -32,7 +32,7 @@
           <el-table-column type="selection" width="55"/>
           <el-table-column label="操作" width="150px">
             <template #default="scope">
-              <el-button type="text" v-if="scope.row.orderState=='待交割'" @click="update(scope.row)" size="mini" >修改</el-button>
+              <el-button type="text" v-if="scope.row.orderState==1" @click="update(scope.row)" size="mini" >修改</el-button>
             </template>
           </el-table-column>
           <el-table-column prop="orderId" label="单号" width="130"/>

@@ -76,7 +76,7 @@
       </el-form-item>
 
         <el-form-item label=交车人 class="post">
-          <el-input v-model="form.orderForcar"/>
+          <el-input v-model="form.orderForcar" readonly/>
         </el-form-item>
         <el-form-item label="领车人" class="post">
           <el-input v-model="form.orderGetcar"/>
@@ -108,6 +108,7 @@ export default {
     onSubmit() {
       let s=JSON.parse(localStorage.getItem("loginuser"))
       var s1 = s.slice(1,-1);
+      console.log("当前登入人",s1);
       this.form.listNum=s1;
       var url = "http://localhost:8088/order"
       if (this.op == 2) {
@@ -133,6 +134,16 @@ export default {
       }
       this.op=op;
       this.form = JSON.parse(this.$route.params.entity);
+      let s=JSON.parse(localStorage.getItem("loginuser"))
+
+      var s1 = s.slice(1,-1);
+      this.axios.get("http://localhost:8088/sys/find-userId",{params:{
+          listNum:s1
+
+        }})
+          .then(v=>{
+            this.form.orderForcar=v.data.listName
+          })
     },
     //取消
     cancel() {

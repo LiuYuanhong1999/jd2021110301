@@ -1,6 +1,6 @@
 <template>
   <div >
-    <h3>增加回访记录</h3>
+    <h3>客户回访</h3>
     <el-form :model="form"  :rules="rules"
              class="from"
              label-width="120px">
@@ -270,7 +270,7 @@ export default {
 
     goBack(){
       this.$router.push({
-        path: '/Assess'
+        path: '/ReturnVist'
       })
     },
 

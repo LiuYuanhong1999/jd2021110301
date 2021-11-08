@@ -10,8 +10,8 @@
       </el-form-item>
 
       <el-form-item label="联系人" class="post">
-        <el-select v-model="form.ordersId" @change="initDate(form.ordersId)">
-          <el-option v-for="item in tableDate" :key="item.ordersId" :label="item.clRecord.contactName" :value="item.clRecord.ordersId"></el-option>
+        <el-select v-model="form.ordersId" @change="initDate2(form.ordersId)">
+          <el-option v-for="item in tableDate2" :key="item.ordersId" :label="item.clRecord.contactName" :value="item.ordersId"></el-option>
         </el-select>
       </el-form-item>
 
@@ -116,9 +116,6 @@
         <el-input v-model="form.assessPrice"></el-input>
       </el-form-item>
 
-      <el-form-item label="最终定价" class="post">
-        <el-input v-model="form.assessFinalPrice"></el-input>
-      </el-form-item>
 
       <el-form-item label="预售价格" class="post">
         {{tableDate[0].clRecord.recordPrice}}
@@ -231,7 +228,7 @@ export default {
 
       ],
 
-
+      tableDate2:[],
       form: {
         assessId:'',//评估编号
         ordersId: '',//预约编号
@@ -330,10 +327,16 @@ export default {
     },
 
     //初始化查询所有已预约用户信息
-    //如果选择联系人那么就会查询该条预约信息
-    initDate(ordersId){
+    initDate(){
+      this.axios.get("http://localhost:8088/find-clOrdersStates")
+          .then((v) => {
+            this.tableDate2 = v.data;
+          })
+    },
 
-      this.axios.get("http://localhost:8088/find-clOrdersState",{
+    //根据编号查询信息
+    initDate2(ordersId){
+      this.axios.get("http://localhost:8088/find-clOrdersState1",{
         params:{
           ordersId:ordersId
         }

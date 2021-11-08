@@ -1,6 +1,6 @@
 <template>
   <div >
-    <h3>收车登记</h3>
+    <h3>客户预约</h3>
     <el-form :model="form"  :rules="rules"
              class="from"
              label-width="120px">
@@ -266,13 +266,12 @@ export default {
 
     goBack(){
       this.$router.push({
-        path: '/Record'
+        path: '/Orders'
       })
     },
 
 
     addClOrders(){
-      alert(this.form.recordId)
       this.axios.post("http://localhost:8088/add-clOrders",this.form)
           .then((v) => {
             this.$message("登记成功")

@@ -3,8 +3,7 @@
     <div class="top">
 
       <el-button type="primary" size="mini" @click="add()">新增</el-button>
-      <el-button type="primary" size="mini">删除</el-button>
-      <el-button type="primary" size="mini">刷新</el-button>
+
     </div>
     <el-container>
       <el-header height="40px">
@@ -31,41 +30,34 @@
         <el-table :data="tableDate.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
           <el-table-column label="操作" width="200px">
             <template #default="scope">
-              <el-button type="text" size="mini">删除</el-button>
-
               <router-link :to="{path: '/UpdateRecords',query:{key:scope.row.recordId,value:JSON.stringify(scope.row)}}">
-
-
                 <el-button type="text" size="mini" >修改</el-button>
               </router-link>
-
-
-              <el-button type="text" @click="look(scope.row)" size="mini" >查看</el-button>
             </template>
           </el-table-column>
           <el-table-column prop="vistId" label="编号" width="80"/>
           <!--      <el-table-column prop="ggBrand.brandName" label="编号" width="80"/>-->
           <el-table-column prop="clAssess.ggBrand.brandName" label="汽车品牌"/>
-          <el-table-column prop="clAssess.ggDesign.designName" label="汽车款式"/>
+          <el-table-column prop="clAssess.ggDesign.designName" label="汽车款式" width="200px"/>
           <el-table-column prop="clAssess.ggColor.colorName" label="车身颜色"/>
-          <el-table-column prop="clAssess.assessLeaveTime" label="出厂时间"/>
+          <el-table-column prop="clAssess.assessLeaveTime" label="出厂时间" width="120px"/>
           <el-table-column prop="clAssess.clOrders.clRecord.recordPrice" label="预售价"/>
-          <el-table-column prop="clAssess.assessBegain" label="初登时间"/>
+          <el-table-column prop="clAssess.assessBegain" label="初登时间" width="120px"/>
           <el-table-column prop="clAssess.assessCard" label="车牌号"/>
           <el-table-column prop="clAssess.assessMileage" label="行驶里程"/>
           <el-table-column prop="clAssess.clOrders.clRecord.recordName" label="车主姓名"/>
           <el-table-column prop="clAssess.ggColor.colorName" label="车身颜色"/>
           <el-table-column prop="clAssess.assessType" label="燃油种类"/>
-          <el-table-column prop="clAssess.assessDrive" label="是否四轮驱动"/>
+          <el-table-column prop="clAssess.assessDrive" label="是否四轮驱动" width="100px"/>
           <el-table-column prop="clAssess.assessEngine" label="发动机"/>
           <el-table-column prop="clAssess.assessTap" label="档位形式"/>
           <el-table-column prop="clAssess.assessTransferTimes" label="过户次数"/>
           <el-table-column prop="clAssess.clOrders.clRecord.contactName" label="联系人"/>
-          <el-table-column prop="clAssess.clOrders.clRecord.contactPhone" label="手机号码"/>
-          <el-table-column prop="clAssess.clOrders.clRecord.contactEmail" label="邮箱"/>
-          <el-table-column prop="clAssess.clOrders.clRecord.recordTime" label="咨询时间"/>
-          <el-table-column prop="clAssess.clOrders.clRecord.recordWay" label="咨询方式"/>
-          <el-table-column prop="clAssess.clOrders.orderTime" label="评估日期"/>
+          <el-table-column prop="clAssess.clOrders.clRecord.contactPhone" label="手机号码" width="120px"/>
+          <el-table-column prop="clAssess.clOrders.clRecord.contactEmail" label="邮箱" width="170px"/>
+          <el-table-column prop="clAssess.clOrders.clRecord.recordTime" label="咨询时间" width="120px"/>
+          <el-table-column prop="clAssess.clOrders.clRecord.recordWay" label="咨询方式" />
+          <el-table-column prop="clAssess.clOrders.ordersTime" label="评估日期" width="120"/>
           <el-table-column prop="clAssess.clOrders.ordersMethdo" label="评估方式"/>
           <el-table-column prop="clAssess.assessAppraise" label="总体评价"/>
           <el-table-column prop="clAssess.assessNewcarPrice" label="新车市场价"/>
@@ -87,7 +79,7 @@
               </template>
             </template>
           </el-table-column>
-          <el-table-column prop="vistTime" label="回访时间"/>
+          <el-table-column prop="vistTime" label="回访时间" width="120px"/>
           <el-table-column prop="acId" label="归档类型"/>
         </el-table>
 

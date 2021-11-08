@@ -3,8 +3,6 @@
     <div class="top">
 
       <el-button type="primary" size="mini" @click="add()">新增</el-button>
-      <el-button type="primary" size="mini">删除</el-button>
-      <el-button type="primary" size="mini">刷新</el-button>
     </div>
     <el-container>
       <el-header height="40px">
@@ -31,7 +29,6 @@
         <el-table :data="tableDate.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
           <el-table-column label="操作" width="200px">
             <template #default="scope">
-              <el-button type="text" size="mini">删除</el-button>
 
               <router-link :to="{path: '/UpdateRecords',query:{key:scope.row.recordId,value:JSON.stringify(scope.row)}}">
 
@@ -40,38 +37,37 @@
               </router-link>
 
 
-              <el-button type="text" @click="look(scope.row)" size="mini" >查看</el-button>
+
             </template>
           </el-table-column>
-          <el-table-column prop="assessId" label="编号" width="80"/>
+          <el-table-column prop="assessId" label="编号" width="120"/>
 <!--      <el-table-column prop="ggBrand.brandName" label="编号" width="80"/>-->
           <el-table-column prop="ggBrand.brandName" label="汽车品牌"/>
-          <el-table-column prop="ggDesign.designName" label="汽车款式"/>
-          <el-table-column prop="ggColor.colorName" label="车身颜色"/>
-          <el-table-column prop="assessLeaveTime" label="出厂时间"/>
+          <el-table-column prop="ggDesign.designName" label="汽车款式" width="200"/>
+          <el-table-column prop="ggColor.colorName" label="车身颜色" />
+          <el-table-column prop="assessLeaveTime" label="出厂时间" width="120"/>
           <el-table-column prop="clOrders.clRecord.recordPrice" label="预售价"/>
-          <el-table-column prop="assessBegain" label="初登时间"/>
+          <el-table-column prop="assessBegain" label="初登时间" width="120"/>
           <el-table-column prop="assessCard" label="车牌号"/>
           <el-table-column prop="assessMileage" label="行驶里程"/>
           <el-table-column prop="clOrders.clRecord.recordName" label="车主姓名"/>
           <el-table-column prop="ggColor.colorName" label="车身颜色"/>
           <el-table-column prop="assessType" label="燃油种类"/>
-          <el-table-column prop="assessDrive" label="是否四轮驱动"/>
+          <el-table-column prop="assessDrive" label="是否四轮驱动" width="120"/>
           <el-table-column prop="assessEngine" label="发动机"/>
           <el-table-column prop="assessTap" label="档位形式"/>
           <el-table-column prop="assessTransferTimes" label="过户次数"/>
           <el-table-column prop="clOrders.clRecord.contactName" label="联系人"/>
-          <el-table-column prop="clOrders.clRecord.contactPhone" label="手机号码"/>
-          <el-table-column prop="clOrders.clRecord.contactEmail" label="邮箱"/>
-          <el-table-column prop="clOrders.clRecord.recordTime" label="咨询时间"/>
+          <el-table-column prop="clOrders.clRecord.contactPhone" label="手机号码" width="150"/>
+          <el-table-column prop="clOrders.clRecord.contactEmail" label="邮箱" width="150"/>
+          <el-table-column prop="clOrders.clRecord.recordTime" label="咨询时间" width="120"/>
           <el-table-column prop="clOrders.clRecord.recordWay" label="咨询方式"/>
-          <el-table-column prop="clOrders.orderTime" label="评估日期"/>
+          <el-table-column prop="clOrders.ordersTime" label="评估日期" width="120"/>
           <el-table-column prop="clOrders.ordersMethdo" label="评估方式"/>
           <el-table-column prop="assessAppraise" label="总体评价"/>
           <el-table-column prop="assessNewcarPrice" label="新车市场价"/>
           <el-table-column prop="assessOffice" label="评估人报价"/>
           <el-table-column prop="assessPrice" label="定价中心"/>
-          <el-table-column prop="assessFinalPrice" label="最终定价"/>
           <el-table-column prop="assessUser" label="主评"/>
           <el-table-column prop="assessReview" label="副评"/>
         </el-table>
@@ -90,29 +86,6 @@
         </div>
       </el-main>
     </el-container>
-    <el-dialog v-model="dialogVisible" title="详情">
-      <el-descriptions
-          class="margin-top"
-          :column="2"
-          :size="mini"
-          border >
-        <el-descriptions-item label="姓名：">
-          张三
-        </el-descriptions-item>
-        <el-descriptions-item label="金额">
-          18100000000
-        </el-descriptions-item>
-        <el-descriptions-item label="年龄">
-          Suzhou
-        </el-descriptions-item>
-        <el-descriptions-item label="就读学校">
-          <el-tag size="small">School</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item label="家庭住址">
-          株洲市茶陵县MM村MM组EE户
-        </el-descriptions-item>
-      </el-descriptions>
-    </el-dialog>
 
   </div>
 </template>

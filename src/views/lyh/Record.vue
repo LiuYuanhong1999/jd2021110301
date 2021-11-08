@@ -3,8 +3,6 @@
     <div class="top">
 
       <el-button type="primary" size="mini" @click="add()">新增</el-button>
-      <el-button type="primary" size="mini">删除</el-button>
-      <el-button type="primary" size="mini">刷新</el-button>
     </div>
     <el-container>
       <el-header height="40px">
@@ -32,34 +30,28 @@
           <el-table-column type="selection" width="55"/>
           <el-table-column label="操作" width="200px">
             <template #default="scope">
-              <el-button type="text" size="mini">删除</el-button>
 
               <router-link :to="{path: '/UpdateRecords',query:{key:scope.row.recordId,value:JSON.stringify(scope.row)}}">
-
-
                 <el-button type="text" size="mini" >修改</el-button>
               </router-link>
-
-
-              <el-button type="text" @click="look(scope.row)" size="mini" >查看</el-button>
             </template>
           </el-table-column>
 
-          <el-table-column prop="recordId" label="编号" width="80"/>
+          <el-table-column prop="recordId" label="编号" width="120"/>
           <el-table-column prop="ggBrand.brandName" label="汽车品牌"/>
           <el-table-column prop="ggDesign.designName" label="汽车款式"/>
           <el-table-column prop="ggColor.colorName" label="车身颜色"/>
-          <el-table-column prop="recordLeaveTime" label="出厂时间"/>
+          <el-table-column prop="recordLeaveTime" label="出厂时间" width="120px"/>
           <el-table-column prop="recordVariator" label="变速器"/>
           <el-table-column prop="recordDisplacement" label="排量"/>
           <el-table-column prop="recordMileage" label="行驶里程"/>
-          <el-table-column prop="recordBegain" label="初登时间"/>
+          <el-table-column prop="recordBegain" label="初登时间" width="120px"/>
           <el-table-column prop="recordName" label="车主姓名"/>
           <el-table-column prop="contactName" label="联系人姓名"/>
-          <el-table-column prop="contactPhone" label="联系人手机号码"/>
-          <el-table-column prop="contactPhone" label="联系人邮箱"/>
+          <el-table-column prop="contactPhone" label="联系人号码" width="120px"/>
+          <el-table-column prop="contactPhone" label="联系人邮箱" width="170px"/>
           <el-table-column prop="recordPrice" label="预售价格"/>
-          <el-table-column prop="recordTime" label="咨询时间"/>
+          <el-table-column prop="recordTime" label="咨询时间" width="120px"/>
           <el-table-column prop="recordWay" label="咨询方式"/>
           <el-table-column prop="recordNote" label="备注"/>
         </el-table>
@@ -78,29 +70,6 @@
         </div>
       </el-main>
     </el-container>
-    <el-dialog v-model="dialogVisible" title="详情">
-      <el-descriptions
-          class="margin-top"
-          :column="2"
-          :size="mini"
-          border >
-        <el-descriptions-item label="姓名：">
-          张三
-        </el-descriptions-item>
-        <el-descriptions-item label="金额">
-          18100000000
-        </el-descriptions-item>
-        <el-descriptions-item label="年龄">
-          Suzhou
-        </el-descriptions-item>
-        <el-descriptions-item label="就读学校">
-          <el-tag size="small">School</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item label="家庭住址">
-          株洲市茶陵县MM村MM组EE户
-        </el-descriptions-item>
-      </el-descriptions>
-    </el-dialog>
 
   </div>
 </template>
@@ -111,7 +80,6 @@ export default {
     return {
       //表格数据
       tableDate: [],
-      dialogVisible:false,//详情弹出
       grid:{//详情实体类
       },
 

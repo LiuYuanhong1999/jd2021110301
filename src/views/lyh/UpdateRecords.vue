@@ -4,7 +4,7 @@
     <el-form :model="form" :rules="rules"
              label-width="120px">
       <el-form-item label="登记编号" class="post">
-        <el-input v-model="form.recordId"></el-input>
+        <el-input v-model="form.recordId" :disabled="true"></el-input>
       </el-form-item>
       <el-form-item label="厂商名称" class="post">
         <el-select v-model="form.factoryId"></el-select>

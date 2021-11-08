@@ -6,24 +6,6 @@
     </div>
     <el-container>
       <el-header height="40px">
-        <el-form size="mini" inline>
-          <el-form-item label="名称：">
-            <el-input></el-input>
-          </el-form-item>
-          <el-form-item label="厂商名称：">
-            <el-input></el-input>
-          </el-form-item>
-          <el-form-item label="厂商名称：">
-            <el-input></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" size="mini">确定</el-button>
-
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" size="mini">高级</el-button>
-          </el-form-item>
-        </el-form>
       </el-header>
       <el-main>
         <el-table :data="tableDate.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">

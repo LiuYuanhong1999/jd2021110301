@@ -6,22 +6,18 @@
     </div>
     <el-container>
       <el-header height="40px">
+        <el-form size="mini" :model="search" inline>
+          <el-form-item label="评估编号：">
+            <el-input v-model="search.assessId"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" size="mini" @click="initDate(search.assessId)">确定</el-button>
+            <!--          <el-form-item size="mini">高级</el-form-item>-->
+          </el-form-item>
+        </el-form>
       </el-header>
       <el-main>
         <el-table :data="tableDate.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
-          <el-table-column label="操作" width="200px">
-            <template #default="scope">
-
-              <router-link :to="{path: '/UpdateRecords',query:{key:scope.row.recordId,value:JSON.stringify(scope.row)}}">
-
-
-                <el-button type="text" size="mini" >修改</el-button>
-              </router-link>
-
-
-
-            </template>
-          </el-table-column>
           <el-table-column prop="assessId" label="编号" width="120"/>
 <!--      <el-table-column prop="ggBrand.brandName" label="编号" width="80"/>-->
           <el-table-column prop="ggBrand.brandName" label="汽车品牌"/>
@@ -46,7 +42,7 @@
           <el-table-column prop="clOrders.clRecord.recordWay" label="咨询方式"/>
           <el-table-column prop="clOrders.ordersTime" label="评估日期" width="120"/>
           <el-table-column prop="clOrders.ordersMethdo" label="评估方式"/>
-          <el-table-column prop="assessAppraise" label="总体评价"/>
+          <el-table-column prop="assessAppraise" label="总体评价" width="200px"/>
           <el-table-column prop="assessNewcarPrice" label="新车市场价"/>
           <el-table-column prop="assessOffice" label="评估人报价"/>
           <el-table-column prop="assessPrice" label="定价中心"/>
@@ -81,7 +77,9 @@ export default {
       dialogVisible:false,//详情弹出
       grid:{//详情实体类
       },
-
+    search:{
+      assessId: ''
+    },
       currentPage:1, //初始页
       pagesize:10,    //    每页的数据
 
@@ -93,8 +91,12 @@ export default {
     look(){
       this.dialogVisible=true;
     },
-    initDate(){
-      this.axios.get("http://localhost:8088/find-clAssess")
+    initDate(assessId){
+      this.axios.get("http://localhost:8088/find-clAssess",{
+        params:{
+          assessId:assessId
+        }
+      })
           .then((v) => {
             this.tableDate = v.data;
           })

@@ -187,7 +187,7 @@ export default {
       form: {
         ordersId:'',//收购编号
         recordId:'',//登记编号
-        ordersTime:'',//预约日期
+        ordersTime:this.randomNumber2(),//预约日期
         ordersUser:'',//接待人
         ordersState:'',//预约状态
         acId:'',//归档编号
@@ -255,6 +255,21 @@ export default {
     }
   },
   methods:{
+    // 获取当前日期的方法
+    randomNumber2() {
+      const now = new Date()
+      let month = now.getMonth() + 1
+      let day = now.getDate()
+      let hour = now.getHours()
+      let minutes = now.getMinutes()
+      let seconds = now.getSeconds()
+      month = this.setTimeDateFmt(month)
+      hour = this.setTimeDateFmt(hour)
+      minutes = this.setTimeDateFmt(minutes)
+      seconds = this.setTimeDateFmt(seconds)
+      return now
+    },
+
     findUserName(){
       let s=JSON.parse(localStorage.getItem("loginuser"))
       var s1 = s.slice(1,-1);

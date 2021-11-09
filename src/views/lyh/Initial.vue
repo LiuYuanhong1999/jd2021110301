@@ -128,7 +128,7 @@ export default {
         storageLicense:'',//行驶证
         storagePrcie:'',//销售价格
         storageUser:'',//操作员
-        storageTime: '',//入库时间
+        storageTime: this.randomNumber2(),//入库时间
       },
 
 
@@ -147,7 +147,20 @@ export default {
     }
   },
   methods:{
-
+    // 获取当前日期的方法
+    randomNumber2() {
+      const now = new Date()
+      let month = now.getMonth() + 1
+      let day = now.getDate()
+      let hour = now.getHours()
+      let minutes = now.getMinutes()
+      let seconds = now.getSeconds()
+      month = this.setTimeDateFmt(month)
+      hour = this.setTimeDateFmt(hour)
+      minutes = this.setTimeDateFmt(minutes)
+      seconds = this.setTimeDateFmt(seconds)
+      return now
+    },
     goBack(){
       this.$router.push({
         path: '/Inventory'

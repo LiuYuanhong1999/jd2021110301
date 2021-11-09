@@ -440,17 +440,13 @@ const router = createRouter({
 });
 
 
-    router.beforeEach((to, from, next) => {
-        if (JSON.parse(localStorage.getItem("loginuser"))) {//toekn存在
-            if (JSON.parse(localStorage.getItem("loginuser")).length!=3) {//token存在，并且是login页面
-                    next();
-            } else {
-                next();
-            }
-        } else {
-            next();
-        }
-    })
+    // router.beforeEach((to, from, next) => {
+    //         if (JSON.parse(localStorage.getItem("loginuser")).length!=3) {//token存在，并且是login页面
+    //                 next();
+    //         } else {
+    //             next('/loin');
+    //         }
+    // })
 
 
 export default router;

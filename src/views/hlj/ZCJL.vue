@@ -17,17 +17,19 @@
 				</div>
 			</el-col>
 		</el-row>
-		
+
 		<div class="memorandum" style="margin-top: 20px;display:flex;justify-content: center">
 			<el-table :data="empData" border style="width: 1200px;" >
-				<el-table-column prop="otherPepo" label="报销人" width="240">
+				<el-table-column prop="otherPepo" label="报销人" width="250">
 				</el-table-column>
-				<el-table-column prop="otherPaydate" label="日期" width="240">
+				<el-table-column prop="otherPaydate" label="日期" width="250">
 				</el-table-column>
-				<el-table-column prop="otherPaydate" label="金额" width="240">
+				<el-table-column prop="otherMoney" label="金额/元" width="250">
 				</el-table-column>
-				<el-table-column prop="otherSubject" label="是由" width="240">
+				<el-table-column prop="otherSubject" label="事由" width="250">
 				</el-table-column>
+        <el-table-column prop="otherRemak" label="审核人" width="150">
+        </el-table-column>
 			</el-table>
 		</div>
 		<div class="pagination" style="margin-top: 20px;display:flex;justify-content: center">

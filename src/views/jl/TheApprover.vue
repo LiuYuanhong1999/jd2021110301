@@ -230,7 +230,7 @@ export default {
       this.axios.post("http://localhost:8088/select-bgapr1").then((v)=>{
         this.daiban1 = v.data
       })
-    }
+    },
   },
   created() {
     this.show()

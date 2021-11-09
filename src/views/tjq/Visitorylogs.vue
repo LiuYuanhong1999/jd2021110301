@@ -61,9 +61,9 @@
           </el-descriptions>
         </el-dialog>-->
     <el-dialog v-model="dialogaddVisible" title="新增">
-      <el-form  :model="entity" label-width="100px" >
+      <el-form  :model="entity" label-width="100px" :rules="rules">
         <el-form-item label="客户编号">
-          <el-input v-model="entity.cusNo" type="text"/>
+          <el-input v-model="entity.cusNo" readonly type="text"/>
         </el-form-item>
 <!--        <el-form-item label="接待人">
           <el-input v-model="entity.listNum"></el-input>
@@ -114,8 +114,13 @@ export default {
       },
       dialogaddVisible:false,//新增弹出
       entity:{//新增实体类
-
       },
+      rules:{
+        logState:[{required:true,message:'状态不能为空',trigger:'blur'}],
+        logType:[{required:true,message:'沟通类型不能为空',trigger:'blur'}],
+        logContext:[{required:true,message:'沟通内容不能为空',trigger:'blur'}]
+      },
+
       search:{},//搜索框
       pageSize:5,
       pageno:1,
@@ -141,7 +146,7 @@ export default {
       }
       this.axios.post(url,this.entity)
           .then(v=>{
-            if(this.entity.logState=='交易成功'){
+            if(this.entity.logState==1){
               this.$router.replace("/order")
               return;
             }

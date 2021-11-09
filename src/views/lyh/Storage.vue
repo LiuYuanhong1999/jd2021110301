@@ -7,6 +7,16 @@
     <el-container>
       <el-header height="40px">
 
+        <el-form size="mini" :model="search" inline>
+          <el-form-item label="库存编号：">
+            <el-input v-model="search.storageId"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" size="mini" @click="initDate(search.storageId)">确定</el-button>
+          </el-form-item>
+        </el-form>
+
+
       </el-header>
       <el-main>
         <el-table :data="tableDate.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
@@ -93,7 +103,9 @@ export default {
       currentPage:1, //初始页
       pagesize:10,    //    每页的数据
 
-
+    search:{
+      storageId:""
+    },
     }
   },
   methods:{
@@ -102,8 +114,12 @@ export default {
       this.dialogVisible=true;
     },
 
-    initDate(){
-      this.axios.get("http://localhost:8088/select_ClStorageAll")
+    initDate(storageId){
+      this.axios.get("http://localhost:8088/select_ClStorageAll",{
+        params:{
+          storageId:storageId
+        }
+      })
           .then((v) => {
             this.tableDate = v.data;
           })

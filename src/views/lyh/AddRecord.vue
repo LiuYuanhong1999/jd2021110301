@@ -114,7 +114,7 @@ export default {
         contactPhone:"",
         contactEmail:'',
         recordPrice:0,
-        recordTime:'',
+        recordTime:this.randomNumber2(),
         recordWay:'',
         recordNote:''
       },
@@ -161,7 +161,6 @@ export default {
       })
     },
     addClRecord(){
-      alert(this.form.recordId)
       this.axios.post("http://localhost:8088/add-clRecords",this.form)
           .then((v) => {
            this.$message("登记成功")
@@ -226,6 +225,23 @@ export default {
       seconds = this.setTimeDateFmt(seconds)
       return now.getFullYear().toString() + month.toString() + day + hour + minutes + seconds + (Math.round(Math.random() * 23 + 100)).toString()
     },
+
+    // 获取当前日期的方法
+    randomNumber2() {
+      const now = new Date()
+      let month = now.getMonth() + 1
+      let day = now.getDate()
+      let hour = now.getHours()
+      let minutes = now.getMinutes()
+      let seconds = now.getSeconds()
+      month = this.setTimeDateFmt(month)
+      hour = this.setTimeDateFmt(hour)
+      minutes = this.setTimeDateFmt(minutes)
+      seconds = this.setTimeDateFmt(seconds)
+      return now
+    },
+
+
     setTimeDateFmt(month) {
       return 0;
     },

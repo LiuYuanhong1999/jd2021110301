@@ -153,7 +153,7 @@ export default {
           assessId:'',//评估编号
           vistState:'',//评估状态
           vistPrice:'',//最终成交价格
-          vistTime:'',//回访时间
+          vistTime:this.randomNumber2(),//回访时间
           vistNote:'',//备注
       },
 
@@ -267,7 +267,20 @@ export default {
     }
   },
   methods:{
-
+    // 获取当前日期的方法
+    randomNumber2() {
+      const now = new Date()
+      let month = now.getMonth() + 1
+      let day = now.getDate()
+      let hour = now.getHours()
+      let minutes = now.getMinutes()
+      let seconds = now.getSeconds()
+      month = this.setTimeDateFmt(month)
+      hour = this.setTimeDateFmt(hour)
+      minutes = this.setTimeDateFmt(minutes)
+      seconds = this.setTimeDateFmt(seconds)
+      return now
+    },
     goBack(){
       this.$router.push({
         path: '/ReturnVist'

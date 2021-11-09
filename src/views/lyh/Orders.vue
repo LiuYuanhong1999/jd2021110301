@@ -6,14 +6,26 @@
     </div>
     <el-container>
       <el-header height="40px">
+        <el-form size="mini" :model="search" inline>
+          <el-form-item label="预约编号：">
+            <el-input v-model="search.ordersId"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" size="mini" @click="initDate(search.ordersId)">确定</el-button>
+            <!--          <el-form-item size="mini">高级</el-form-item>-->
+          </el-form-item>
+        </el-form>
+
+
+
       </el-header>
       <el-main>
         <el-table :data="tableDate.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
-          <el-table-column type="selection" width="55"/>
-          <el-table-column prop="ordersId" label="编号" width="120px"/>
-          <el-table-column prop="clRecord.recordId" label="编号" width="120px"/>
-          <el-table-column prop="clRecord.ggBrand.brandName" label="汽车品牌"/>
-          <el-table-column prop="clRecord.ggDesign.designName" label="汽车款式"/>
+
+          <el-table-column prop="ordersId" label="预约编号" width="120px"/>
+          <el-table-column prop="clRecord.recordId" label="登记编号" width="120px"/>
+          <el-table-column prop="clRecord.ggBrand.brandName" label="汽车品牌" />
+          <el-table-column prop="clRecord.ggDesign.designName" label="汽车款式" width="160"/>
           <el-table-column prop="clRecord.ggColor.colorName" label="车身颜色"/>
           <el-table-column prop="clRecord.recordLeaveTime" label="出厂时间" width="120"/>
           <el-table-column prop="clRecord.recordVariator" label="变速器"/>
@@ -99,7 +111,9 @@ export default {
       dialogVisible:false,//详情弹出
       grid:{//详情实体类
       },
-
+      search:{
+        ordersId:''
+      },
       currentPage:1, //初始页
       pagesize:10,    //    每页的数据
 
@@ -111,8 +125,11 @@ export default {
     look(){
       this.dialogVisible=true;
     },
-    initDate(){
-      this.axios.get("http://localhost:8088/find-clOrders2")
+    initDate(ordersId){
+
+      this.axios.get("http://localhost:8088/find-clOrders2",{params:{
+        ordersId:ordersId
+        }})
           .then((v) => {
             this.tableDate = v.data;
           })

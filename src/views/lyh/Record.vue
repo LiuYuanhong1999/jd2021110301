@@ -6,11 +6,19 @@
     </div>
     <el-container>
       <el-header height="40px">
-
+        <el-form size="mini" :model="search" inline>
+          <el-form-item label="收车编号：">
+            <el-input v-model="search.recordId"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" size="mini" @click="initDate(search.recordId)">确定</el-button>
+            <!--          <el-form-item size="mini">高级</el-form-item>-->
+          </el-form-item>
+        </el-form>
       </el-header>
       <el-main>
         <el-table :data="tableDate.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
-          <el-table-column type="selection" width="55"/>
+
           <el-table-column label="操作" width="200px">
             <template #default="scope">
 
@@ -20,12 +28,12 @@
             </template>
           </el-table-column>
 
-          <el-table-column prop="recordId" label="编号" width="120"/>
+          <el-table-column prop="recordId" label="收车编号" width="120"/>
           <el-table-column prop="ggBrand.brandName" label="汽车品牌"/>
-          <el-table-column prop="ggDesign.designName" label="汽车款式"/>
+          <el-table-column prop="ggDesign.designName" label="汽车款式" width="180"/>
           <el-table-column prop="ggColor.colorName" label="车身颜色"/>
           <el-table-column prop="recordLeaveTime" label="出厂时间" width="120px"/>
-          <el-table-column prop="recordVariator" label="变速器"/>
+          <el-table-column prop="recordVariator" label="变速器" width="120"/>
           <el-table-column prop="recordDisplacement" label="排量"/>
           <el-table-column prop="recordMileage" label="行驶里程"/>
           <el-table-column prop="recordBegain" label="初登时间" width="120px"/>
@@ -65,6 +73,11 @@ export default {
       grid:{//详情实体类
       },
 
+
+      search:{
+        recordId:'',
+      },
+
       currentPage:1, //初始页
       pagesize:10,    //    每页的数据
 
@@ -76,8 +89,10 @@ export default {
     look(){
       this.dialogVisible=true;
     },
-    initDate(){
-        this.axios.get("http://localhost:8088/find-clRecord")
+    initDate(recordId){
+        this.axios.get("http://localhost:8088/find-clRecord",{params:{
+          recordId:recordId
+          }})
             .then((v) => {
               this.tableDate = v.data;
             })

@@ -96,7 +96,7 @@ export default {
       //表单绑定的实体类
       form: {
         orderLet: 0,//让利
-        orderState: '1'//状态
+        orderState: '1',//状态
       },
       //数据验证
       rules: [],

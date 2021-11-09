@@ -5,7 +5,7 @@
 		<el-breadcrumb-item>报销审批</el-breadcrumb-item>
 	</el-breadcrumb> --><br>
 	<div class="all" style="width: 100%;height: 100%;">
-		
+
 		<div class="memorandum" style="margin-top: 20px;display:flex;justify-content: center">
 			<el-table :data="empData" border style="width: 1200px;" >
 				<el-table-column prop="bgetProposer" label="姓名" width="240">
@@ -59,7 +59,7 @@
 		data() {
 			return {
 				empData: [],
-				
+
 				pageInfo: {
 					currentPage: 1,
 					pagesize: 3,
@@ -71,7 +71,8 @@
 				empForm:{
 					otherSubject:'',
 					otherMoney:'',
-					otherPepo:''
+					otherPepo:'',
+          otherRemak:''
 				},
 				addVisible:false,
 			}
@@ -79,7 +80,7 @@
 		methods: {
 			addWay() {
 				const _this = this
-				
+
 				this.axios.put("http://localhost:8088/updByQka", this.empForm2)
 					.then(function(response) {
 						_this.axios.post("http://localhost:8088/addOtherBop", _this.empForm)
@@ -107,9 +108,9 @@
 				this.empForm.otherSubject = row.bgetCause;
 				this.empForm.otherMoney = row.bgetMoney;
 				this.empForm.otherPepo = row.bgetProposer;
-				
+
 			},
-			
+
 			handleSizeChange(pagesize) {
 				var _this = this
 				this.pageInfo.pagesize = pagesize
@@ -125,6 +126,18 @@
 						console.log(error)
 					})
 			},
+      findUserName(){
+        let s=JSON.parse(localStorage.getItem("loginuser"))
+        var s1 = s.slice(1,-1);
+        this.axios.get("http://localhost:8088/sys/find-userId",{params:{
+
+            listNum:s1
+
+          }})
+            .then(v=>{
+              this.empForm.otherRemak=v.data.listName
+            })
+      },
 			handleCurrentChange(currentPage) {
 				var _this = this
 				this.pageInfo.currentPage = currentPage
@@ -137,10 +150,11 @@
 					}).catch(function(error) {
 						console.log(error)
 					})
-		
+
 		}
 		},
 		created() {
+      this.findUserName()
 			const _this = this
 			this.axios.get("http://localhost:8088/selectBgExpenByPrimaryKey", {
 				params: this.pageInfo

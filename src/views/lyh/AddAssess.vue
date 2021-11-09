@@ -96,10 +96,6 @@
       <el-input v-model="form.assessTransferTimes"></el-input>
       </el-form-item>
 
-      <el-form-item label="行驶证" class="post">
-        <el-input v-model="form.assessLicense"></el-input>
-      </el-form-item>
-
       <el-form-item label="总体评价" class="post">
     <el-input v-model="form.assessAppraise"></el-input>
       </el-form-item>
@@ -357,7 +353,20 @@ export default {
             this.form.assessUser=v.data.listName
           })
     },
-
+    // 获取当前日期的方法
+    randomNumber2() {
+      const now = new Date()
+      let month = now.getMonth() + 1
+      let day = now.getDate()
+      let hour = now.getHours()
+      let minutes = now.getMinutes()
+      let seconds = now.getSeconds()
+      month = this.setTimeDateFmt(month)
+      hour = this.setTimeDateFmt(hour)
+      minutes = this.setTimeDateFmt(minutes)
+      seconds = this.setTimeDateFmt(seconds)
+      return now
+    },
     // 获取当前日期的方法
     randomNumber() {
       const now = new Date()

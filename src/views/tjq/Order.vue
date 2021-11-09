@@ -15,7 +15,7 @@
           </el-form-item>
           <el-form-item label="状态：">
 <!--            <el-input></el-input>-->
-            <el-select v-model="search.orderState">
+            <el-select v-model="search.orderState" clearable>
               <el-option label="待交割" value="1"/>
               <el-option label="欠款中" value="2"/>
               <el-option label="完成" value="3"/>

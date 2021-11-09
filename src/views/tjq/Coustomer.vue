@@ -14,16 +14,12 @@
             <el-input v-model="search.cusName"></el-input>
           </el-form-item>
           <el-form-item label="客户类别：">
-            <el-select v-model="search.ctId">
+            <el-select v-model="search.ctId" clearable>
               <el-option v-for="v in courstomerTypes" :label="v.ctName" :value="v.ctId"/>
             </el-select>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" size="mini" @click="load">确定</el-button>
-            <!--          <el-form-item size="mini">高级</el-form-item>-->
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" size="mini">高级</el-button>
             <!--          <el-form-item size="mini">高级</el-form-item>-->
           </el-form-item>
         </el-form>

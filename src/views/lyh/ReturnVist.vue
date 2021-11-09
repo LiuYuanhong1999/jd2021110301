@@ -7,7 +7,14 @@
     </div>
     <el-container>
       <el-header height="40px">
-
+        <el-form size="mini" :model="search" inline>
+          <el-form-item label="回访编号：">
+            <el-input v-model="search.vistId"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" size="mini" @click="initDate(search.vistId)">确定</el-button>
+          </el-form-item>
+        </el-form>
       </el-header>
       <el-main>
         <el-table :data="tableDate.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%">
@@ -18,7 +25,7 @@
               </router-link>
             </template>
           </el-table-column>
-          <el-table-column prop="vistId" label="编号" width="80"/>
+          <el-table-column prop="vistId" label="编号" width="120"/>
           <!--      <el-table-column prop="ggBrand.brandName" label="编号" width="80"/>-->
           <el-table-column prop="clAssess.ggBrand.brandName" label="汽车品牌"/>
           <el-table-column prop="clAssess.ggDesign.designName" label="汽车款式" width="200px"/>
@@ -117,6 +124,9 @@ export default {
       grid:{//详情实体类
       },
 
+        search:{
+        vistId: ''
+        },
       currentPage:1, //初始页
       pagesize:10,    //    每页的数据
 
@@ -125,11 +135,11 @@ export default {
   },
   methods:{
     //查询详情
-    look(){
-      this.dialogVisible=true;
-    },
-    initDate(){
-      this.axios.get("http://localhost:8088/find-clReturnVist")
+
+    initDate(vistId){
+      this.axios.get("http://localhost:8088/find-clReturnVist2",{params:{
+        vistId:vistId
+        }})
           .then((v) => {
             this.tableDate = v.data;
           })

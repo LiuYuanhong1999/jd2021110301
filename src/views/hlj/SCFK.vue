@@ -56,6 +56,11 @@
 						<el-input  v-model="FinancePaymentForm.financeMoney" disabled></el-input>
 					</el-form-item>
 				</div>
+        <div style="width: 300px;padding-top: 20px;padding-right: 40px;">
+          <el-form-item label="支付人:">
+            <el-input  v-model="FinancePaymentForm.financePepo" disabled></el-input>
+          </el-form-item>
+        </div>
 			</div>
 			<div style="margin-left: -100px;">
 				<el-form-item class="el-form-butt-show-one-s">
@@ -91,7 +96,20 @@ export default {
     }
   },
   methods:{
-	  delWay(row) {
+    findUserName(){
+      let s=JSON.parse(localStorage.getItem("loginuser"))
+      var s1 = s.slice(1,-1);
+      this.axios.get("http://localhost:8088/sys/find-userId",{params:{
+
+          listNum:s1
+
+        }})
+          .then(v=>{
+            this.FinancePaymentForm.financePepo=v.data.listName
+          })
+    },
+
+    delWay(row) {
 	  	this.addVisible = true;
 		console.log(row);
 	  	this.FinancePaymentForm.financeCarnumber = row.assessId;
@@ -138,6 +156,7 @@ export default {
   },
   created() {
     this.initDate();
+    this.findUserName();
   }
 
 

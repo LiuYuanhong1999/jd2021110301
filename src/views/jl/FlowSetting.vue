@@ -26,16 +26,16 @@
 
     <!-- ******************新建模板弹窗******************* -->
 
-    <el-dialog title="添加模板" v-model="addtemplate">
-      <el-form :model="tainjialiucheng">
+    <el-dialog title="添加模板" v-model="addtemplate" >
+      <el-form :model="tainjialiucheng" :rules="rules" ref="tainjialiucheng">
         <el-form-item label="流程名称" prop="bgfwName">
           <el-input v-model="tainjialiucheng.bgfwName"/>
         </el-form-item>
       </el-form>
       <template #footer>
 				  <span class="dialog-footer">
-            <el-button type="info" plain="" @click="additional()">新 增</el-button>
-				    <el-button type="info" plain="" @click="addtemplate = false">取 消</el-button>
+            <el-button type="info" plain @click="additional()">新 增</el-button>
+				    <el-button type="info" plain @click="addtemplate = false">取 消</el-button>
 				  </span>
       </template>
     </el-dialog>
@@ -51,7 +51,7 @@
         <el-table-column prop="" label="管理">
           <template #default="scope">
             <el-button type="primary" plain size="mini" @click="xiugai(scope.row)">修 改</el-button>
-            <el-button type="primary" plain size="mini" >删 除</el-button>
+            <el-button type="primary" plain size="mini" @click="shanchu(scope.row)">删 除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -65,7 +65,7 @@
     <!-- ******************新建子节点步骤弹窗******************* -->
 
     <el-dialog @close="qingkong" title="步骤" v-model="buzhou">
-      <el-form :model="zijiedian">
+      <el-form :model="zijiedian" :rules="rules" ref="zijiedian">
         <el-form-item prop="bgfnSerial" label="步骤序号" :label-position="labe" label-width="80px">
           <input v-model="zijiedian.bgfnSerial"/>
         </el-form-item>
@@ -82,8 +82,8 @@
       </el-form>
       <template #footer>
 				  <span class="dialog-footer">
-				    <el-button type="info" plain="" @click="addbuzhou()">确 定</el-button>
-            <el-button type="info" plain="" @click="qingkong()">取 消</el-button>
+				    <el-button type="info" plain @click="addbuzhou()">确 定</el-button>
+            <el-button type="info" plain @click="qingkong()">取 消</el-button>
 				  </span>
       </template>
     </el-dialog>
@@ -114,6 +114,21 @@ export default {
       labe:'right',//对齐form表单
       currentPage:1, //初始页
       pagesize:8,    //    每页的数据
+      all:undefined,
+      rules:{
+        bgfwName: [
+          { required: true, message: '请输入模板名称', trigger: 'blur' },
+        ],
+        bgfnSerial:[
+            { required: true, message: '请输入步骤序号', trigger: 'blur' },
+        ],
+        bgfnDesignation:[
+          { required: true, message: '请输入步骤名称', trigger: 'blur' },
+        ],
+        bgfnApprover:[
+          { required: true, message: '请选择审批人', trigger: 'blur' },
+        ],
+      }
     }
   },
   methods:{
@@ -132,22 +147,29 @@ export default {
     /*查看步骤设置,新增修改步骤弹窗*/
     stepstosetthe(row){
       this.zijiedian.bgfnBgflowid=row.bgfwId
+      this.all=row;
       this.childnode = true;
       this.axios({url:"http://localhost:8088/all-bgFlowEdition",params:{bgfnBgflowid:row.bgfwId}}).then((v)=>{
         this.buzhoushezhi = v.data
       })
     },
     /*添加模板*/
-    additional(){
-      this.axios.post("http://localhost:8088/add-record",this.tainjialiucheng).then((v)=>{
-        this.inquire();
-        this.addtemplate =false;
-        this.$message({
-          message: '新增流程成功',
-          type: 'success'
-        });
-      }).catch(function (){
+    additional() {
+      this.$refs["tainjialiucheng"].validate((valid) => {
+        if (valid) {
+          this.axios.post("http://localhost:8088/add-record",this.tainjialiucheng).then((v)=>{
+            this.inquire();
+            this.addtemplate =false;
+            this.$message({
+              message: '新增流程成功',
+              type: 'success'
+            });
+          }).catch(function (){
 
+          })
+        } else {
+          return false
+        }
       })
     },
     /*新增子节点步骤*/
@@ -166,6 +188,19 @@ export default {
       this.buzhou =true;
       this.axios.get("http://localhost:8088/all-user").then(v=>{
         this.user = v.data
+        this.stepstosetthe(this.all)
+      })
+    },
+    /*删除子节点*/
+    shanchu(row){
+      console.log("我的row",row);
+      this.axios({url:"http://localhost:8088/dele-bgfnid",params:{bgfnId:row.bgfnId}}).then(v=>{
+        console.log("xxxxxxxxxxx",v);
+        this.stepstosetthe(this.all)
+        this.$message({
+          message: '删除成功',
+          type: 'success'
+        });
       })
     },
     /*清空表单*/
@@ -184,6 +219,11 @@ export default {
       this.axios.post("http://localhost:8088/add-bgfled",this.zijiedian).then((v)=>{
         //this.stepstosetthe(row.bgfwId);
         this.buzhou = false;
+        this.stepstosetthe(this.all)
+        this.$message({
+          message: '操作步骤成功',
+          type: 'success'
+        });
       })
     },
     inquire(){

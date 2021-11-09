@@ -52,26 +52,27 @@
 		</div>
 	</div>
 
-	<el-dialog title="欠款补交" v-model="addVisible" width="60%" :before-close="addhandleClose">
-		<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+	<el-dialog title="欠款补交" v-model="addVisible" width="30%" :before-close="close">
+		<el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="130px" class="demo-ruleForm">
 			<div style="display: flex;flex-wrap: wrap;justify-content: space-around;">
-				<div style="width: 300px;padding-top: 20px;padding-right: 40px;">
-					<el-form-item label="当前欠款金额:">
-						<el-input v-model="orderDebt2"></el-input>
-					</el-form-item>
+				<div style="width: 300px;">
+          <el-form-item label="输入还款金额:">
+            <el-input @blur="jianfas()" v-model="shuruje"></el-input>
+          </el-form-item>
 				</div>
-				<div style="width: 300px;padding-top: 20px;padding-right: 40px;">
-					<el-form-item label="输入还款金额:">
-						<el-input @blur="jianfas()" v-model="shuruje"></el-input>
-					</el-form-item>
+				<div style="width: 300px;padding-top: 20px;">
+          <el-form-item label="当前欠款金额:">
+            <el-input v-model="orderDebt2" disabled></el-input>
+          </el-form-item>
+
 				</div>
-				<div style="width: 300px;padding-top: 20px;padding-right: 40px;">
+				<div style="width: 300px;padding-top: 20px;">
 					<el-form-item label="剩余还款金额:">
-						<el-input  v-model="jianfa"></el-input>
+						<el-input  v-model="jianfa" disabled></el-input>
 					</el-form-item>
 				</div>
 			</div>
-			<div style="margin-left: -100px;">
+			<div style="margin-left: 100px;padding: 0px">
 				<el-form-item class="el-form-butt-show-one-s">
 					<el-button type="primary" @click="addWay()">确定</el-button>
 				</el-form-item>
@@ -128,10 +129,10 @@
 		},
 		methods: {
 			close() {
-				for (var key in this.ruleForm) {
-					delete this.ruleForm[key];
-				}
-				this.addVisible1 = false
+				this.jianfa='';
+        this.price='';
+        this.orderDebt='';
+        this.addVisible1 = false
 				this.addVisible = false
 				},
 			jianfas() {
@@ -147,11 +148,11 @@
 				this.ruleForm.orderDebt = this.jianfa;
 				console.log(this.ruleForm.orderId)
 				this.customerForm.customerMoney = this.shuruje;
-				this.axios.put("http://localhost:8088/updDebt", this.ruleForm)
+				this.axios.put("http://localhost:8088/order/updDebt", this.ruleForm)
 					.then(function(response) {
 						_this.axios.post("http://localhost:8088/addCustomerRecord", _this.customerForm)
 						.then(function(response) {
-						_this.axios.get("http://localhost:8088/slelctDebt", {
+						_this.axios.get("http://localhost:8088/order/slelctDebt", {
 								params: _this.pageInfo
 							})
 							.then(function(response) {
@@ -222,7 +223,19 @@
 						console.log(error)
 					})
 			},
-			handleSizeChange(pagesize) {
+      findUserName(){
+        let s=JSON.parse(localStorage.getItem("loginuser"))
+        var s1 = s.slice(1,-1);
+        this.axios.get("http://localhost:8088/sys/find-userId",{params:{
+
+            listNum:s1
+
+          }})
+            .then(v=>{
+              this.customerForm.customerPepo=v.data.listName
+            })
+      },
+      handleSizeChange(pagesize) {
 				var _this = this
 				this.pageInfo.pagesize = pagesize
 				var ps = qs.stringify(this.pageInfo)
@@ -252,6 +265,7 @@
 			}
 		},
 		created() {
+      this.findUserName()
 			const _this = this
 			this.axios.get("http://localhost:8088/slelctDebt", {
 				params: this.pageInfo

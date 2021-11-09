@@ -75,29 +75,7 @@
         </div>
       </el-main>
     </el-container>
-    <el-dialog v-model="dialogVisible" title="详情">
-      <el-descriptions
-          class="margin-top"
-          :column="2"
-          :size="mini"
-          border >
-        <el-descriptions-item label="姓名：">
-          张三
-        </el-descriptions-item>
-        <el-descriptions-item label="金额">
-          18100000000
-        </el-descriptions-item>
-        <el-descriptions-item label="年龄">
-          Suzhou
-        </el-descriptions-item>
-        <el-descriptions-item label="就读学校">
-          <el-tag size="small">School</el-tag>
-        </el-descriptions-item>
-        <el-descriptions-item label="家庭住址">
-          株洲市茶陵县MM村MM组EE户
-        </el-descriptions-item>
-      </el-descriptions>
-    </el-dialog>
+
 
   </div>
 </template>

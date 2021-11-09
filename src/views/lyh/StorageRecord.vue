@@ -26,7 +26,7 @@
           <el-table-column prop="storageState" label="入库类型">
             <template #default="scope">
               <template v-if="scope.row.storageState =='0'">
-                  收车入库
+                收车入库
               </template>
 
               <template v-if="scope.row.storageState =='1'">
@@ -80,7 +80,7 @@ export default {
     },
 
     initDate(){
-      this.axios.get("http://localhost:8088/find-clInventoryRecord")
+      this.axios.get("http://localhost:8088/select_ClStorageAll2")
           .then((v) => {
             this.tableDate = v.data;
           })

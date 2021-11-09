@@ -5,14 +5,6 @@
         </div>
         <el-container>
             <el-header height="40px">
-                <el-form size="mini" inline>
-                    <el-form-item label="角色编号：">
-                        <el-input></el-input>
-                    </el-form-item>
-                    <el-form-item label="角色名称：">
-                        <el-input></el-input>
-                    </el-form-item>
-                </el-form>
             </el-header>
             <el-main>
                 <el-table :data="tableData.slice((currentPage-1)*pagesize,currentPage*pagesize)" style="width: 100%"
@@ -182,9 +174,9 @@
                 this.axios.post("http://localhost:8088/sys/add-menu",this.sysMenu)
                 .then(v=>{
                     if (v.data==1){
-                        alert("新增成功")
+                        this.$message("新增成功")
                     }else {
-                        alert("修改成功")
+                        this.$message("修改成功")
                     }
                     this.clearFrom()
                     this.initData()

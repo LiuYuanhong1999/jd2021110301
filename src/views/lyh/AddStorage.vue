@@ -101,9 +101,9 @@
         {{assessData[0].clAssess.assessUser}}
       </el-form-item>
 
-      <el-form-item label="副评人" class="post">
-        {{assessData[0].clAssess.assessReview}}
-      </el-form-item>
+<!--      <el-form-item label="副评人" class="post">-->
+<!--        {{assessData[0].clAssess.assessReview}}-->
+<!--      </el-form-item>-->
 
 
       <el-form-item label="最终定价" class="post">
@@ -117,7 +117,7 @@
       </el-form-item>
 
       <el-form-item label="操作员" class="post">
-      <el-input v-model="form.storageUser"></el-input>
+      <el-input v-model="form.storageUser" :disabled="true"></el-input>
       </el-form-item>
       <el-form-item label="入库时间" class="post">
         <el-date-picker v-model="form.storageTime"></el-date-picker>
@@ -448,8 +448,25 @@ export default {
     setTimeDateFmt(month) {
       return 0;
     },
+
+
+    findUserName(){
+      let s=JSON.parse(localStorage.getItem("loginuser"))
+      var s1 = s.slice(1,-1);
+      this.axios.get("http://localhost:8088/sys/find-userId",{params:{
+
+          listNum:s1
+
+        }})
+          .then(v=>{
+            this.form.storageUser=v.data.listName
+          })
+    },
+
+
   },
   created() {
+    this.findUserName();
     this.form.storageId="KC"+this.randomNumber()
     this.findAll();
     this.initDate();

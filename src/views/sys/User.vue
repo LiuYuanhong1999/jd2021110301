@@ -7,20 +7,20 @@
       <el-header height="40px">
         <el-form size="mini" inline>
           <el-form-item label="角色组：">
-<!--            <el-select v-model="chaUser.jsId" style="width: 200px">-->
-<!--              <el-option-->
-<!--                      v-for="provider in tableData2"-->
-<!--                      :key="provider.jsId"-->
-<!--                      :label="provider.jsName"-->
-<!--                      :value="provider.jsId"-->
-<!--              />-->
-<!--            </el-select>-->
+            <el-select v-model="jsId" clearable style="width: 200px" @change="initData">
+              <el-option
+                      v-for="provider in tableData2"
+                       :key="provider.jsId"
+                      :label="provider.jsName"
+                      :value="provider.jsId"
+              />
+            </el-select>
           </el-form-item>
           <el-form-item label="用户名：">
-            <el-input></el-input>
+            <el-input v-model="userName" @input="initData"></el-input>
           </el-form-item>
           <el-form-item label="所属部门：">
-            <el-select v-model="UserList.orgId" style="width: 200px">
+            <el-select v-model="orgId" clearable style="width: 200px" @change="initData">
               <el-option
                       v-for="provider in tableData3"
                       :key="provider.orgId"
@@ -30,7 +30,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="性别：">
-            <el-select v-model="UserList.listSex" style="width: 200px">
+            <el-select v-model="listSex" clearable style="width: 200px" @change="initData">
               <el-option
                       v-for="provider in tableData4"
                       :key="provider.value"
@@ -87,7 +87,7 @@
       <el-row>
         <el-col :span="10">
           <el-form-item label="">
-            角色组：<el-select v-model="UserList.sysRoleuser.roldId" style="width: 200px">
+            角色组：<el-select clearable v-model="UserList.sysRoleuser.roldId" style="width: 200px">
             <el-option
                     v-for="provider in tableData2"
                     :key="provider.jsId"
@@ -99,7 +99,7 @@
         </el-col>
         <el-col :span="10">
           <el-form-item label="">
-            所属部门：<el-select v-model="UserList.orgId" style="width: 200px">
+            所属部门：<el-select clearable v-model="UserList.orgId" style="width: 200px">
             <el-option
                     v-for="provider in tableData3"
                     :key="provider.orgId"
@@ -140,7 +140,7 @@
       <el-row>
         <el-col :span="10">
           <el-form-item label="">
-            性别：<el-select v-model="UserList.listSex" style="width: 200px">
+            性别：<el-select clearable v-model="UserList.listSex" style="width: 200px">
             <el-option
                     v-for="provider in tableData4"
                     :key="provider.value"
@@ -221,13 +221,13 @@ export default {
           roldId:'',
           listNum:''
         },
-        chaUser:{
-          jsId:'',
-          userName:'',
-          orgId:'',
-          listSex:''
-        }
       },
+
+
+      jsId:'',
+      userName:'',
+      orgId:'',
+      listSex:''
 
     }
   },
@@ -236,7 +236,7 @@ export default {
     xiuUser(){
       this.axios.post("http://localhost:8088/sys/update-user", this.UserList)
               .then(v => {
-                alert("修改成功")
+                this.$message("修改成功")
                 this.initData()
                 this.clearFrom()
               })
@@ -271,7 +271,7 @@ export default {
       s.userList.listZt=2
       this.axios.post("http://localhost:8088/sys/suo-user", s.userList)
               .then(v => {
-                alert("锁定成功")
+                this.$message("锁定成功")
                 this.initData()
                 this.clearFrom()
               })
@@ -281,7 +281,7 @@ export default {
     zhuXiao(s){
       this.axios.post("http://localhost:8088/sys/del-user", s.userList)
               .then(v => {
-                alert("注销成功")
+                this.$message("注销成功")
                 this.initData()
                 this.clearFrom()
               })
@@ -325,7 +325,7 @@ export default {
 
     //查询用户列表
     initData(){
-      this.axios.get("http://localhost:8088/sys/find-userlist")
+      this.axios.get("http://localhost:8088/sys/find-userlist",{params:{jsId:this.jsId,userName:this.userName,orgId:this.orgId,listSex:this.listSex}})
       .then(v => {
         this.tableData=v.data
         this.initData2()

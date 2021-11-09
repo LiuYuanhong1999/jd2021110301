@@ -6,9 +6,6 @@
       <el-form-item label="登记编号" class="post">
         <el-input v-model="form.recordId" :disabled="true"></el-input>
       </el-form-item>
-      <el-form-item label="厂商名称" class="post">
-        <el-select v-model="form.factoryId"></el-select>
-      </el-form-item>
       <el-form-item label="汽车品牌" class="post">
         <el-select  v-model="form.brandId" @change="findDesign(form.brandId)">
           <el-option v-for="item in brand" :key="item.brandId" :label="item.brandName" :value="item.brandId"></el-option>
@@ -77,8 +74,8 @@
         <el-date-picker  v-model="form.recordTime"></el-date-picker >
       </el-form-item>
 
-      <el-form-item label="备注" class="post">
-        <el-input  v-model="form.recordNote"></el-input >
+      <el-form-item label="咨询方式" class="post">
+        <el-input  v-model="form.recordWay"></el-input >
       </el-form-item>
 
       <el-form-item class="post">
@@ -145,7 +142,7 @@ export default {
       })
     },
     addClRecord(){
-      this.axios.post("http://localhost:8088/add-clRecord",this.form)
+      this.axios.post("http://localhost:8088/update-clRecords",this.form)
           .then((v) => {
             this.$message("编辑成功")
           })

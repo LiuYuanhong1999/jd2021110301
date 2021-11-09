@@ -193,6 +193,14 @@ const routes = [
               }  ,
                 component:()=>import('../views/lyh/Inventory.vue')
             },
+            {
+              path: '/StorageRecord',
+              name: 'StorageRecord',
+              meta: {
+                  title: '入库记录'
+              },
+              component:()=>import('../views/lyh/StorageRecord.vue')
+            },
 
             {
                 path:'/factory',

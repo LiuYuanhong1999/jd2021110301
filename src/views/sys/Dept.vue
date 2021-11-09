@@ -6,12 +6,6 @@
         <el-container>
             <el-header height="40px">
                 <el-form size="mini" inline>
-                    <el-form-item label="角色编号：">
-                        <el-input></el-input>
-                    </el-form-item>
-                    <el-form-item label="角色名称：">
-                        <el-input></el-input>
-                    </el-form-item>
                 </el-form>
             </el-header>
             <el-main>
@@ -96,7 +90,7 @@
                 currentPage:1, //初始页
                 pagesize:10,    //    每页的数据
                 dialogVisible:false,//详情弹出
-
+                deptName:'',
                 sysOrg:{
                     orgId:'',
                     orgPid:'',
@@ -117,9 +111,9 @@
                 this.axios.post("http://localhost:8088/sys/add-dept",this.sysOrg)
                 .then(v=>{
                     if(v.data==1){
-                        alert("新增成功")
+                        this.$message("新增成功")
                     }else{
-                        alert("修改成功")
+                        this.$message("修改成功")
                     }
                     this.initData()
                 })

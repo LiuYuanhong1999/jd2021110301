@@ -36,7 +36,6 @@
           <el-table-column prop="recordPrice" label="预售价格"/>
           <el-table-column prop="recordTime" label="咨询时间" width="120px"/>
           <el-table-column prop="recordWay" label="咨询方式"/>
-          <el-table-column prop="recordNote" label="备注"/>
         </el-table>
 
         <!--分页-->

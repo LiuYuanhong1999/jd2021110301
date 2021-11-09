@@ -6,10 +6,10 @@
             <el-header height="40px">
                 <el-form size="mini" inline>
                     <el-form-item label="登录用户：">
-                        <el-input></el-input>
+                        <el-input v-model="userName" @input="initData"></el-input>
                     </el-form-item>
                     <el-form-item label="IP地址：">
-                        <el-input></el-input>
+                        <el-input v-model="loginIp" @input="initData"></el-input>
                     </el-form-item>
                 </el-form>
             </el-header>
@@ -52,7 +52,8 @@
                 tableData: [],
                 currentPage:1, //初始页
                 pagesize:10,    //    每页的数据
-
+                userName:'',
+                loginIp:'',
             }
         },
         methods:{
@@ -67,13 +68,13 @@
             delLogin(s){
               this.axios.post("http://localhost:8088/sys/del-loginrizhi",s)
               .then(v => {
-                  alert("删除成功")
+                  this.$message("删除成功")
                   this.initData()
               })
             },
 
             initData() {
-                this.axios.get("http://localhost:8088/sys/find-loginrizhi")
+                this.axios.get("http://localhost:8088/sys/find-loginrizhi",{params:{userName:this.userName,loginIp:this.loginIp}})
                 .then(v => {
                     this.tableData=v.data
                 })

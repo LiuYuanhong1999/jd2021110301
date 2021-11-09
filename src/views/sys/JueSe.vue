@@ -7,10 +7,10 @@
             <el-header height="40px">
                 <el-form size="mini" inline>
                     <el-form-item label="角色编号：">
-                        <el-input></el-input>
+                        <el-input v-model="jsId" @input="initData"></el-input>
                     </el-form-item>
                     <el-form-item label="角色名称：">
-                        <el-input></el-input>
+                        <el-input v-model="jsName" @input="initData"></el-input>
                     </el-form-item>
                 </el-form>
             </el-header>
@@ -88,6 +88,8 @@
     export default {
         data() {
             return {
+                jsId:'',
+                jsName:'',
                 //表格数据
                 tableData: [],
                 tableData1: [],
@@ -126,7 +128,7 @@
                 var grant = JSON.stringify({jsId:this.jueId,funs:funs})
                 this.axios.post("http://localhost:8088/sys/add-jm",qs.stringify({grant:grant}))
                     .then(v => {
-                        alert("授权成功")
+                        this.$message("授权成功")
                         this.initData()
                     })
             },
@@ -147,9 +149,9 @@
                 this.axios.post("http://localhost:8088/sys/add-juese",this.UserJuese)
                     .then(v => {
                         if (v.data==1){
-                            alert("新增成功")
+                            this.$message("新增成功")
                         }else{
-                            alert("修改成功")
+                            this.$message("修改成功")
                         }
                         this.initData()
                         this.clearFrom()
@@ -167,7 +169,7 @@
             delJueSe(s){
                 this.axios.get("http://localhost:8088/sys/del-juese",{params:{jsId:s}})
                 .then(v => {
-                    alert("删除成功")
+                    this.$message("删除成功")
                     this.initData()
                 })
             },
@@ -181,7 +183,7 @@
             },
 
             initData() {
-                this.axios.get("http://localhost:8088/sys/find-uj")
+                this.axios.get("http://localhost:8088/sys/find-uj",{params:{jsId:this.jsId,jsName:this.jsName}})
                     .then(v => {
                         this.tableData=v.data
                     })

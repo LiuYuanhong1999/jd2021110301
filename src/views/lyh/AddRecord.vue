@@ -38,14 +38,18 @@
       </el-form-item>
 
       <el-form-item label="变速器" class="post">
-        <el-input  v-model="form.recordVariator"></el-input >
+        <el-select  v-model="form.recordVariator">
+        <el-option v-for="i in recordVariators" :key="i.id" :label="i.name" :value="i.id"></el-option>
+
+
+        </el-select >
       </el-form-item>
 
-      <el-form-item label="排量" class="post">
+      <el-form-item label="排量/升" class="post">
         <el-input  v-model="form.recordDisplacement"></el-input >
       </el-form-item>
 
-      <el-form-item label="行驶里程" class="post">
+      <el-form-item label="行驶里程/公里" class="post">
         <el-input  v-model="form.recordMileage"></el-input >
       </el-form-item>
 
@@ -77,8 +81,8 @@
         <el-date-picker  v-model="form.recordTime"></el-date-picker >
       </el-form-item>
 
-      <el-form-item label="备注" class="post">
-        <el-input  v-model="form.recordNote"></el-input >
+      <el-form-item label="咨询方式" class="post">
+        <el-input  v-model="form.recordWay"></el-input >
       </el-form-item>
 
       <el-form-item class="post">
@@ -123,6 +127,31 @@ export default {
       design:[],
       //汽车颜色
       color:[],
+
+      //变速器
+      recordVariators:[
+
+        {
+          id:'连续手自一体',
+          name:'连续手自一体',
+        },
+        {
+          id:'手动',
+
+          name: '手动'
+        },
+        {
+          id:'自动',
+
+          name: '自动'
+        }, {
+          id:'手自一体式',
+
+          name: '手自一体式'
+        }
+
+      ],
+
     }
   },
   methods:{
@@ -132,7 +161,8 @@ export default {
       })
     },
     addClRecord(){
-      this.axios.post("http://localhost:8088/add-clRecord",this.form)
+      alert(this.form.recordId)
+      this.axios.post("http://localhost:8088/add-clRecords",this.form)
           .then((v) => {
            this.$message("登记成功")
             this.goBack();
